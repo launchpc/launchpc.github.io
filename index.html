@@ -1,0 +1,1367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LaunchPC – Clean up and speed up your Windows PC</title>
+<meta name="description" content="LaunchPC shows what's filling your drive and slowing your PC down, then helps you fix it in a click. Free for Windows 10 and 11.">
+<meta name="theme-color" content="#0B0C10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LaunchPC">
+<meta property="og:title" content="LaunchPC – Clean up and speed up your Windows PC">
+<meta property="og:description" content="Junk, huge files, duplicates and startup apps, all in one place. Free for Windows 10 and 11.">
+<meta property="og:url" content="https://launchpc.github.io/">
+<meta property="og:image" content="https://launchpc.github.io/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="LaunchPC: your whole PC, cleaned up in one place">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://launchpc.github.io/og.jpg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' rx='40' fill='%231E6BFF'/%3E%3Cg transform='rotate(45 80 80)'%3E%3Cpath d='M66 108 Q80 152 94 108 Z' fill='%23FF8A1F'/%3E%3Cpath d='M58 78 L40 100 L40 112 L58 102 Z' fill='%23BFDBFF'/%3E%3Cpath d='M102 78 L120 100 L120 112 L102 102 Z' fill='%23BFDBFF'/%3E%3Cpath d='M80 22 C96 34 104 56 102 86 L102 102 L58 102 L58 86 C56 56 64 34 80 22 Z' fill='white'/%3E%3Ccircle cx='80' cy='66' r='12' fill='%231E6BFF' stroke='%23BFDBFF' stroke-width='5'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+:root{--bg:#0B0C10;--panel:#14161E;--panel2:#1B1E28;--border:#252A37;--text:#ECEEF3;--muted:#9AA1B2;--accent:#1E6BFF;--accent2:#5C9BFF;--ease:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 "Segoe UI Variable Text","Segoe UI",Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+p{text-wrap:pretty}
+h1,h2,h3{text-wrap:balance;font-family:"Segoe UI Variable Display","Segoe UI",Inter,system-ui,sans-serif;letter-spacing:-.02em;margin:0}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-color:var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font:700 21px "Segoe UI Variable Display","Segoe UI",system-ui;letter-spacing:-.02em}
+.brand span{color:var(--accent2)}
+.badge{font-size:11px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:20px;background:color-mix(in srgb,var(--accent) 20%,transparent);color:var(--accent2)}
+.links{display:flex;align-items:center;gap:26px;font-size:15px;color:var(--muted)}
+.links a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:46px;padding:0 22px;border-radius:12px;font-weight:600;font-size:15px;transition:transform .2s var(--ease),background .2s,box-shadow .3s;border:1px solid transparent;cursor:pointer}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--accent);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 8px 28px color-mix(in srgb,var(--accent) 40%,transparent)}
+.btn.primary:hover{background:#3D82FF;transform:translateY(-1px)}
+.btn.ghost{background:var(--panel2);border-color:var(--border);color:var(--text)}
+.btn.ghost:hover{background:#232735}
+.btn.big{height:58px;padding:0 30px;font-size:17px;border-radius:15px}
+.btn.sm{height:40px;padding:0 16px;font-size:14px}
+main{overflow-x:clip}
+.hero{padding:84px 0 40px;text-align:center;position:relative}
+.hero::before{content:"";position:absolute;left:50%;top:-140px;width:900px;height:600px;transform:translateX(-50%);background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 22%,transparent),transparent);pointer-events:none;z-index:-1}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid var(--border);border-radius:30px;font-size:14px;color:var(--muted);background:var(--panel)}
+.chip i{width:8px;height:8px;border-radius:50%;background:#34D399;box-shadow:0 0 0 4px color-mix(in srgb,#34D399 20%,transparent)}
+.hero h1{font-size:clamp(40px,6.4vw,76px);line-height:1.03;font-weight:700;margin:22px auto 0;max-width:880px}
+.hero h1 span{background:linear-gradient(90deg,#5C9BFF,#1E6BFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{margin:20px auto 0;max-width:650px;font-size:19px;color:var(--muted)}
+.ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:32px}
+.meta{margin-top:14px;font-size:14px;color:var(--muted)}
+
+/* ---------- language switch animation: text fades out, new text sweeps in */
+.langbtn.flip{animation:lbflip .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes lbflip{0%{transform:perspective(200px) rotateX(0)}45%{transform:perspective(200px) rotateX(90deg)}100%{transform:perspective(200px) rotateX(0)}}
+/* ---------- language switch + Arabic */
+.langbtn{height:34px;padding:0 13px;border-radius:10px;border:1px solid var(--border);background:var(--panel2);color:var(--text);font:600 14px "Segoe UI",Tahoma,system-ui,sans-serif;cursor:pointer;transition:background-color .2s,border-color .2s}
+.langbtn:hover{background:#232735}
+html[lang=ar] body{font-family:"Segoe UI","Noto Kufi Arabic","Noto Sans Arabic",Tahoma,system-ui,sans-serif}
+html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3{font-family:"Segoe UI","Noto Kufi Arabic","Noto Sans Arabic",Tahoma,system-ui,sans-serif;letter-spacing:0}
+html[lang=ar] .hero h1{line-height:1.22}
+html[lang=ar] .eyebrow{letter-spacing:0;font-size:14px}
+html[lang=ar] .lead,html[lang=ar] .card p,html[lang=ar] .faq p{line-height:1.8}
+.stage,.tryrow #tourBtn svg{direction:ltr}
+/* ---------- what's new */
+.rel{position:relative;max-width:780px;margin:0 auto;padding-inline-start:34px}
+.rel::before{content:"";position:absolute;inset-inline-start:9px;top:10px;bottom:10px;width:2px;border-radius:2px;background:linear-gradient(var(--accent),var(--border) 70%)}
+.ritem{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:20px 24px;margin-bottom:16px;transition:border-color .3s,transform .4s var(--ease)}
+.ritem:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--border));transform:translateY(-2px)}
+.ritem::before{content:"";position:absolute;inset-inline-start:-31px;top:25px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent2)}
+.ritem.latest::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 25%,transparent)}
+.rhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rhead b{font-size:19px;font-family:"Segoe UI Variable Display","Segoe UI",system-ui,sans-serif}
+.rhead .tag{font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:20px;background:color-mix(in srgb,#34D399 16%,transparent);color:#34D399}
+.rhead time{margin-inline-start:auto;color:var(--muted);font-size:13.5px}
+.ritem p{color:var(--muted);margin:8px 0 12px}
+.ritem ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.ritem li{display:flex;gap:12px;font-size:15px;line-height:1.5}
+.ritem li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--accent2);margin-top:9px}
+.rel .ritem:not(.latest) li{color:#C9CEDA}
+.ritem[dir=ltr]{text-align:left}
+.rmore{display:flex;justify-content:center;margin-top:6px}
+/* ---------- feedback */
+.fb{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:26px 28px;border-radius:22px;border:1px solid var(--border);background:linear-gradient(135deg,var(--panel),color-mix(in srgb,var(--accent) 8%,var(--panel)))}
+.fb-ic{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent2)}
+.fb-ic svg.i{width:24px;height:24px}
+.fb-t{flex:1;min-width:240px}
+.fb-t h3{font-size:20px}
+.fb-t p{margin:4px 0 0;color:var(--muted)}
+.fb-b{display:flex;gap:10px;flex-wrap:wrap}
+.fb-b svg.i{width:18px;height:18px}
+footer .flinks{display:flex;gap:22px;flex-wrap:wrap}
+/* ---------- download helper */
+.dlm{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(5,7,12,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .3s var(--ease)}
+.dlm[hidden]{display:none}
+.dlm.on{opacity:1}
+.dlm-card{position:relative;width:100%;max-width:500px;max-height:calc(100vh - 40px);overflow-y:auto;background:var(--panel);border:1px solid var(--border);border-radius:24px;padding:30px 28px 24px;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,.6);transform:translateY(18px) scale(.97);transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.dlm.on .dlm-card{transform:none}
+.dlm-x{position:absolute;top:14px;inset-inline-end:14px;width:34px;height:34px;border-radius:10px;border:0;background:transparent;color:var(--muted);display:grid;place-items:center;cursor:pointer}
+.dlm-x:hover{background:var(--panel2);color:var(--text)}
+.dlm-ok{width:54px;height:54px;margin:0 auto 14px;border-radius:16px;display:grid;place-items:center;background:color-mix(in srgb,#34D399 16%,transparent);color:#34D399}
+.dlm-ok.pc{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent2)}
+.dlm-ok svg.i{width:26px;height:26px}
+.dlm.on .dlm-ok svg{animation:dlmdrop 1.4s var(--ease) infinite}
+@keyframes dlmdrop{0%{transform:translateY(-4px);opacity:0}30%{opacity:1}60%,100%{transform:translateY(2px);opacity:1}}
+.dlm-card h3{font-size:22px}
+.dlm-sub{color:var(--muted);margin:8px auto 18px;max-width:420px;font-size:15px}
+.dlm-sub b{color:var(--text)}
+.ss{position:relative;text-align:left;background:#0B5CAD;color:#fff;border-radius:6px;padding:20px 22px 16px;font:13px/1.45 "Segoe UI",system-ui,sans-serif;box-shadow:0 12px 30px rgba(0,0,0,.35);overflow:hidden;min-height:200px}
+.ss-t{font-size:22px;font-weight:300;margin-bottom:10px;font-family:"Segoe UI Light","Segoe UI",system-ui,sans-serif}
+.ss-b{opacity:.95;max-width:380px}
+.ss-more{display:inline-block;margin-top:10px;text-decoration:underline;font-weight:600;border-radius:4px;padding:1px 3px;margin-left:-3px;transition:box-shadow .3s}
+.ss-info{margin-top:10px;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .4s}
+.ss-btns{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+.ss-btn{min-width:96px;text-align:center;padding:5px 12px;border:1px solid rgba(255,255,255,.9);color:#fff;font-size:12.5px;transition:box-shadow .3s,opacity .3s,transform .3s}
+.ss-btn.run{opacity:0;transform:translateY(4px)}
+.ss[data-step="1"] .ss-more,.ss[data-step="2"] .ss-btn.run{box-shadow:0 0 0 3px #FFD24D;animation:sspulse 1.4s ease-in-out infinite}
+.ss[data-step="2"] .ss-info{max-height:60px;opacity:1}
+.ss[data-step="2"] .ss-btn.run{opacity:1;transform:none}
+.ss-cur{position:absolute;width:22px;height:22px;left:0;top:0;transition:left .8s var(--ease),top .8s var(--ease);filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));pointer-events:none}
+.ss-cur.tap{animation:sstap .4s ease}
+@keyframes sspulse{50%{box-shadow:0 0 0 6px rgba(255,210,77,.45)}}
+@keyframes sstap{50%{transform:scale(.8)}}
+.dlm-steps{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px;text-align:start}
+.dlm-steps li{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--panel2);cursor:pointer;transition:border-color .3s,background-color .3s}
+.dlm-steps li b{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none;background:var(--bg);font-size:13px;transition:background-color .3s,color .3s}
+.dlm-steps li span b{width:auto;height:auto;display:inline;background:none;font-size:inherit}
+.dlm-steps li.on{border-color:color-mix(in srgb,var(--accent) 55%,var(--border));background:color-mix(in srgb,var(--accent) 10%,var(--panel2))}
+.dlm-steps li.on > b{background:var(--accent);color:#fff}
+.dlm-note{margin:16px 0 0;color:var(--muted);font-size:13.5px}
+.dlm-note a{color:var(--accent2);text-decoration:underline}
+.dlm-link{margin:0 auto 16px;padding:10px 14px;border-radius:12px;border:1px dashed var(--border);background:var(--panel2);font-weight:600;color:var(--accent2);user-select:all;width:fit-content;max-width:100%}
+.dlm-acts{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+@media(max-width:420px){.brand .badge{display:none}.wrap{padding:0 18px}}
+@media(max-width:760px){
+  .langbtn{height:32px;padding:0 11px;font-size:13px}
+  .links{gap:10px}.nav{gap:10px}.nav .btn.sm{padding:0 14px;height:36px}
+  .brand{font-size:19px;gap:8px}.brand svg{width:30px;height:30px}
+  .rel{padding-inline-start:26px}
+  .rel::before{inset-inline-start:5px}
+  .ritem{padding:18px}
+  .ritem::before{inset-inline-start:-27px}
+  .rhead time{margin-inline-start:0;width:100%}
+  .fb{padding:22px 20px}
+  .fb-b{width:100%}.fb-b .btn{flex:1}
+  .dlm-card{padding:26px 18px 20px}
+  .ss{padding:16px 16px 14px;min-height:190px}
+  .ss-t{font-size:19px}
+}
+/* Windows desktop around the preview */
+#tourBtn svg.i{color:var(--accent2);fill:currentColor;stroke:none;width:16px;height:16px}
+.stage{width:100%;position:relative;padding:42px 56px 0;border-radius:22px;border:1px solid var(--border);overflow:hidden;isolation:isolate;transition:padding .45s var(--ease);
+  background:radial-gradient(55% 70% at 12% 100%,rgba(30,107,255,.75),transparent 65%),radial-gradient(50% 65% at 90% 96%,rgba(139,92,246,.62),transparent 65%),radial-gradient(45% 55% at 92% 0%,rgba(14,165,233,.35),transparent 70%),radial-gradient(45% 50% at 6% 4%,rgba(92,155,255,.28),transparent 70%),#0A1124;
+  box-shadow:0 40px 130px rgba(30,107,255,.16)}
+.stage .lp{box-shadow:0 0 0 1px rgba(0,0,0,.55),0 26px 70px rgba(0,0,0,.55);transform-origin:50% 100%}
+.stage.max{padding:0}
+.stage.max .lp{border-color:transparent}
+.taskbar{height:48px;margin:30px -56px 0;display:flex;align-items:center;justify-content:center;position:relative;background:rgba(18,22,34,.8);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);transition:margin .45s var(--ease)}
+.stage.max .taskbar{margin:0}
+.tb-c{display:flex;gap:4px}
+.tbk{width:40px;height:40px;border-radius:7px;display:grid;place-items:center;border:0;padding:0;background:transparent;position:relative;color:#fff;transition:background-color .15s}
+.tbk:hover{background:rgba(255,255,255,.08)}
+.tbk svg{width:22px;height:22px}
+button.tbk{cursor:pointer}
+.tbk.app::after{content:"";position:absolute;bottom:2px;left:50%;width:6px;height:3px;border-radius:2px;background:#9AA1B2;transform:translateX(-50%);opacity:0;transition:width .3s var(--ease),background-color .3s,opacity .3s}
+.tbk.app.open::after{opacity:1}
+.tbk.app.on{background:rgba(255,255,255,.07)}
+.tbk.app.on::after{width:16px;background:#4CC2FF}
+.tbk.app.nudge svg{animation:tbnudge 1.1s ease-in-out infinite}
+@keyframes tbnudge{50%{transform:translateY(-4px)}}
+.tb-r{position:absolute;right:14px;top:0;bottom:0;display:flex;align-items:center;gap:16px;font-size:11.5px;color:#E5E9F0;text-align:right;line-height:1.35}
+.closedhint{position:absolute;left:20px;right:20px;top:44%;text-align:center;color:#D5DDEE;font-size:15px;opacity:0;pointer-events:none;transition:opacity .4s .2s}
+.closedhint b{color:#fff}
+.stage.closed .closedhint,.stage.minned .closedhint{opacity:1}
+@media(max-width:760px){.stage{padding:14px 10px 0;border-radius:18px}.stage .lp{height:560px}.taskbar{margin:14px -10px 0;height:44px}.tb-r .lang{display:none}.tb-r{right:8px;font-size:10.5px}.tbk{width:36px;height:36px}.tbk svg{width:19px;height:19px}}
+/* ---------- interactive app preview (Windows 11 style) */
+.trywrap{margin:56px auto 0;max-width:1080px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.tryrow{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.tryrow .live{display:inline-flex;align-items:center;gap:8px}
+.tryrow .live i{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent);animation:ppulse 1.6s ease-in-out infinite}
+.lp{--ac:#1E6BFF;--acs:color-mix(in srgb,var(--ac) 16%,transparent);--tb:#12151C;--bg:#12151C;--sb:#151821;--pn:#1A1D27;--pn2:#222633;--bd:#2A2F3D;--tx:#E9ECF2;--mu:#9AA1B2;--fa:#6B7385;--hv:rgba(255,255,255,.045);--hv2:rgba(255,255,255,.09);--good:#34D399;--warn:#FBBF24;--bad:#F87171;--spring:cubic-bezier(.34,1.56,.64,1);
+  width:100%;height:600px;display:flex;flex-direction:column;position:relative;background:var(--bg);color:var(--tx);border:1px solid rgba(255,255,255,.13);border-radius:9px;overflow:hidden;text-align:left;font:14px/1.45 "Segoe UI Variable Text","Segoe UI",system-ui,sans-serif;
+  box-shadow:0 0 0 1px rgba(0,0,0,.55),0 30px 80px rgba(0,0,0,.55),0 50px 150px rgba(30,107,255,.16);transition:transform .5s var(--ease),opacity .35s var(--ease),height .45s var(--ease),border-radius .3s,background-color .3s}
+.lp[data-theme=light]{--tb:#FFFFFF;--bg:#F4F6FA;--sb:#FFFFFF;--pn:#FFFFFF;--pn2:#F1F3F7;--bd:#E2E6ED;--tx:#151922;--mu:#5D6575;--fa:#8C93A3;--hv:rgba(0,0,0,.04);--hv2:rgba(0,0,0,.06);border-color:rgba(0,0,0,.25)}
+.lp.max{height:680px;border-radius:0}
+.lp.min{transform:translateY(55%) scale(.12);opacity:0;pointer-events:none}
+.lp.closed{transform:scale(.95);opacity:0;pointer-events:none}
+.lp *{box-sizing:border-box}
+.lp button{font:inherit;color:inherit;cursor:pointer}
+.lp svg.i{width:17px;height:17px}
+/* Windows title bar */
+.p-tb{height:34px;flex:none;display:flex;align-items:center;background:var(--tb);font-size:12px;user-select:none;transition:background-color .3s}
+.p-tb .ti{width:16px;height:16px;margin:0 10px 0 13px}
+.p-tb .tt{flex:1;color:var(--tx);opacity:.9}
+.p-cap{width:46px;height:34px;border:0;background:transparent;display:grid;place-items:center;transition:background-color .1s}
+.p-cap svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:1}
+.p-cap:hover{background:var(--hv2)}
+.p-cap.x:hover{background:#C42B1C;color:#fff}
+/* body */
+.p-body{flex:1;min-height:0;display:flex;position:relative}
+.p-side{width:222px;flex:none;background:var(--sb);border-right:1px solid var(--bd);padding:12px 10px;display:flex;flex-direction:column;gap:2px;overflow-y:auto;scrollbar-width:none;transition:background-color .3s,border-color .3s}
+.p-brand{display:flex;align-items:center;gap:9px;padding:2px 6px 12px;font:700 16px "Segoe UI Variable Display","Segoe UI",system-ui;letter-spacing:-.01em}
+.p-brand svg{width:28px;height:28px}
+.p-brand span{color:var(--ac)}
+.p-brand em{font-style:normal;margin-left:auto;font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:2px 7px;border-radius:20px;background:var(--acs);color:var(--ac)}
+.p-top{display:flex;gap:7px;margin:0 2px 10px}
+.p-search{flex:1;height:32px;border:1px solid var(--bd);border-radius:9px;background:var(--pn2);display:flex;align-items:center;gap:7px;padding:0 9px;color:var(--fa);font-size:12.5px}
+.p-search svg.i{width:14px;height:14px}
+.p-search kbd{margin-left:auto;font:600 10px "Segoe UI";padding:1px 5px;border-radius:5px;border:1px solid var(--bd);color:var(--fa)}
+.p-bell{position:relative;width:32px;height:32px;flex:none;border:1px solid var(--bd);border-radius:9px;background:var(--pn2);display:grid;place-items:center;color:var(--mu);transition:color .2s,border-color .2s}
+.p-bell:hover{color:var(--tx)}
+.p-bell svg.i{width:15px;height:15px;transform-origin:50% 12%}
+.p-bell.ring svg.i{animation:pbell .9s var(--ease)}
+.p-bell b{position:absolute;top:-6px;right:-6px;min-width:16px;height:16px;padding:0 4px;border-radius:9px;background:var(--bad);color:#fff;font-size:10px;line-height:16px;text-align:center;box-shadow:0 0 0 2px var(--sb);transform:scale(0);transition:transform .4s var(--spring)}
+.p-bell b.on{transform:scale(1)}
+.p-side nav{display:contents}
+.p-nav{display:flex;align-items:center;gap:11px;height:34px;flex:none;padding:0 10px;border:0;border-radius:9px;background:transparent;color:var(--mu);font-size:13.5px;text-align:left;width:100%;position:relative;overflow:hidden;white-space:nowrap;transition:background-color .2s,color .2s}
+.p-nav:hover{background:var(--hv);color:var(--tx)}
+.p-nav:hover svg.i{transform:translateX(2px) scale(1.08)}
+.p-nav.on{background:var(--ac);color:#fff;box-shadow:0 6px 16px -5px color-mix(in srgb,var(--ac) 60%,transparent)}
+.p-nav svg.i{width:16px;height:16px;transition:transform .4s var(--spring)}
+.p-nav.on svg.i{animation:pnavpop .5s var(--spring)}
+.p-nav .n{margin-left:auto;font-size:11px;padding:0 7px;border-radius:10px;background:var(--pn2);color:var(--mu)}
+.p-nav.on .n{background:rgba(255,255,255,.22);color:#fff}
+.p-sep{height:1px;flex:none;background:var(--bd);margin:6px 8px}
+.p-foot{margin-top:auto;padding:10px 12px;border-radius:10px;background:var(--pn2);font-size:11.5px;color:var(--mu);flex:none}
+.p-foot b{color:var(--good);display:block;font-size:12px}
+/* main pages */
+.p-main{flex:1;min-width:0;position:relative;overflow:hidden}
+.p-pg{position:absolute;inset:0;overflow-y:auto;padding:22px 26px 26px;display:none;scrollbar-width:thin;scrollbar-color:var(--bd) transparent}
+.p-pg.on{display:block;animation:ppage .45s var(--ease)}
+.p-h{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.p-h h3{font-size:22px;font-weight:700;letter-spacing:-.02em;margin:0}
+.p-h p{margin:2px 0 0;color:var(--mu);font-size:12.5px}
+.p-h .sp{flex:1}
+.p-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:32px;padding:0 13px;border-radius:9px;border:1px solid var(--bd);background:var(--pn);font-size:12.5px;font-weight:600;white-space:nowrap;position:relative;overflow:hidden;text-decoration:none;transition:transform .15s,background-color .2s,border-color .2s,opacity .2s}
+.p-btn:hover{border-color:color-mix(in srgb,var(--fa) 60%,var(--bd))}
+.p-btn:active{transform:scale(.96)}
+.p-btn.pri{background:var(--ac);border-color:transparent;color:#fff}
+.p-btn.dng{background:var(--bad);border-color:transparent;color:#fff}
+.p-btn.pri::after,.p-btn.dng::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);transform:translateX(-130%);transition:transform .85s var(--ease)}
+.p-btn.pri:hover::after,.p-btn.dng:hover::after{transform:translateX(130%)}
+.p-btn svg.i{width:15px;height:15px}
+.p-btn[disabled]{opacity:.45;pointer-events:none}
+.p-btn.busy svg.i{animation:pspin .8s linear infinite}
+.p-rp{position:absolute;border-radius:50%;pointer-events:none;background:currentColor;opacity:.22;transform:scale(0);animation:prp .65s var(--ease) forwards}
+.p-card{background:var(--pn);border:1px solid var(--bd);border-radius:14px;padding:16px 18px;position:relative;isolation:isolate;transition:background-color .3s,border-color .3s,transform .35s var(--ease)}
+.p-card.glow::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--ac) 12%,transparent),transparent 55%)}
+.p-card.glow:hover::before{opacity:1}
+.p-hero{display:flex;align-items:center;gap:18px;overflow:hidden}
+.p-hero::after{content:"";position:absolute;right:-60px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--ac) 18%,transparent),transparent);z-index:-1;animation:porb 14s ease-in-out infinite alternate}
+.p-ring{width:84px;height:84px;position:relative;flex:none}
+.p-ring svg{width:84px;height:84px;transform:rotate(-90deg)}
+.p-ring circle{fill:none;stroke-width:10}
+.p-ring .bgc{stroke:var(--pn2)}
+.p-ring .fg{stroke-linecap:round;stroke-dasharray:251.3;stroke-dashoffset:251.3;transition:stroke-dashoffset 1.4s var(--ease),stroke .5s}
+.p-ring b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:24px;font-weight:700;line-height:1}
+.p-ring small{font-size:8.5px;letter-spacing:.1em;color:var(--fa);font-weight:700;margin-top:3px}
+.p-hero .tx{flex:1;min-width:0}
+.p-hero h4{margin:5px 0 2px;font-size:17px}
+.p-hero .d{color:var(--mu);font-size:12.5px}
+.p-pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-pill.good{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
+.p-pill.warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:color-mix(in srgb,var(--warn) 75%,var(--tx))}
+.p-pill.bad{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.p-tile{cursor:pointer;text-align:left;font:inherit;color:inherit;overflow:hidden}
+.p-tile:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--ac) 45%,var(--bd))}
+.p-tile .ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:var(--acs);color:var(--ac);margin-bottom:10px;transition:transform .45s var(--spring)}
+.p-tile:hover .ic{transform:scale(1.08) rotate(-6deg)}
+.p-tile small{display:block;color:var(--mu);font-size:12px}
+.p-tile b{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.p-drive .top{display:flex;align-items:center;gap:10px;font-size:13px}
+.p-drive .top .d{color:var(--mu);margin-left:auto;font-size:12px}
+.p-bar{height:8px;border-radius:8px;background:var(--pn2);overflow:hidden;margin-top:10px}
+.p-bar i{display:block;height:100%;width:0;border-radius:8px;background:var(--warn);transition:width 1.4s var(--ease),background-color .4s}
+.p-sub{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--fa);margin:20px 2px 8px}
+.p-rec{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--bd)}
+.p-rec:first-child{border-top:0;padding-top:0}.p-rec:last-child{padding-bottom:0}
+.p-rec .t{font-weight:600;font-size:13px}.p-rec .d{color:var(--mu);font-size:12px}
+.p-rec .p-btn{margin-left:auto}
+.p-rec.done{opacity:.55}
+.p-dot{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex:none}
+.p-dot svg.i{width:15px;height:15px}
+.p-dot.warn{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+.p-dot.good{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.p-dot.bad{background:color-mix(in srgb,var(--bad) 15%,transparent);color:var(--bad)}
+.p-dot.tip{background:var(--acs);color:var(--ac)}
+/* lists */
+.p-list{background:var(--pn);border:1px solid var(--bd);border-radius:14px;overflow:hidden;transition:background-color .3s,border-color .3s}
+.p-lh,.p-row{display:grid;grid-template-columns:30px 1fr 130px 80px;align-items:center;gap:10px;padding:0 14px}
+.p-lh{height:36px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--fa);border-bottom:1px solid var(--bd)}
+.p-row{min-height:50px;border-bottom:1px solid var(--bd);font-size:13px;cursor:pointer;position:relative;transition:background-color .15s,opacity .35s,transform .35s var(--ease)}
+.p-row:last-child{border-bottom:0}
+.p-row:hover{background:var(--hv)}
+.p-row::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0;background:var(--ac);transform:scaleY(0);transition:transform .3s var(--ease)}
+.p-row:hover::before,.p-row.sel::before{transform:scaleY(1)}
+.p-row.sel{background:var(--acs)}
+.p-row.gone{opacity:0;transform:translateX(-30px)}
+.p-row .nm{min-width:0;display:flex;align-items:center;gap:10px}
+.p-row .nm div{min-width:0}
+.p-row .nm b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p-row .nm span{color:var(--fa);font-size:11.5px}
+.p-row .r,.p-lh .r{text-align:right;font-variant-numeric:tabular-nums}
+.p-row .m{color:var(--mu);font-size:12px}
+.p-fi{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--pn2);color:var(--mu);flex:none}
+.p-fi svg.i{width:15px;height:15px}
+.p-cb{width:18px;height:18px;border-radius:5px;border:1.5px solid color-mix(in srgb,var(--fa) 75%,transparent);display:grid;place-items:center;transition:background-color .15s,border-color .15s}
+.p-cb svg{width:12px;height:12px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.4);transition:opacity .15s,transform .35s var(--spring)}
+.sel .p-cb,.p-cb.on{background:var(--ac);border-color:var(--ac)}
+.sel .p-cb svg,.p-cb.on svg{opacity:1;transform:none}
+.p-selbar{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.p-selbar .cnt{font-size:12.5px;color:var(--mu)}
+.p-selbar .cnt.bump{animation:pbump .4s var(--spring)}
+.p-selbar .sp{flex:1}
+.p-empty{padding:40px 20px;text-align:center;color:var(--mu);font-size:13px}
+.p-empty b{display:block;color:var(--tx);font-size:15px;margin-bottom:4px}
+.p-empty .ic{width:46px;height:46px;border-radius:14px;margin:0 auto 12px;display:grid;place-items:center;background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+/* toggles */
+.p-tg{width:40px;height:22px;border-radius:12px;border:0;background:color-mix(in srgb,var(--fa) 50%,transparent);position:relative;flex:none;transition:background-color .25s}
+.p-tg::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:8px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .3s var(--spring),width .2s}
+.p-tg.on{background:var(--ac)}
+.p-tg.on::after{transform:translateX(18px)}
+.p-tg:active::after{width:21px}
+.p-tg.on:active::after{transform:translateX(13px)}
+/* startup */
+.p-st .p-lh,.p-st .p-row{grid-template-columns:1fr 90px 50px}
+.p-st .p-row{cursor:default}
+.p-av{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;flex:none}
+.p-imp{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;justify-self:start}
+.p-imp.High{background:color-mix(in srgb,var(--bad) 15%,transparent);color:var(--bad)}
+.p-imp.Medium{background:color-mix(in srgb,var(--warn) 17%,transparent);color:color-mix(in srgb,var(--warn) 75%,var(--tx))}
+.p-imp.Low{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.p-row.off .nm{opacity:.55}
+.p-note{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mu);margin-bottom:12px}
+.p-note svg.i{color:var(--good);width:16px;height:16px}
+/* performance */
+.p-meters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.p-meter{padding:12px 14px 10px}
+.p-meter .top{display:flex;align-items:center;gap:7px;color:var(--mu);font-size:12px}
+.p-meter .top svg.i{width:14px;height:14px}
+.p-meter b{display:block;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:2px}
+.p-meter .d{color:var(--fa);font-size:11px}
+.p-meter svg.sp{width:100%;height:34px;display:block;margin-top:6px}
+.p-meter path.l{fill:none;stroke:var(--ac);stroke-width:1.6;vector-effect:non-scaling-stroke}
+.p-meter path.a{fill:color-mix(in srgb,var(--ac) 14%,transparent)}
+.p-ptab .p-lh,.p-ptab .p-row{grid-template-columns:1fr 70px 80px 90px 80px}
+.p-ptab .p-row{cursor:default;min-height:44px}
+.p-lh button{border:0;background:none;font:inherit;color:inherit;text-transform:inherit;letter-spacing:inherit;padding:0;height:36px;text-align:right;transition:color .2s}
+.p-lh button:hover{color:var(--tx)}
+.p-lh button.on{color:var(--ac)}
+.p-lh button.on::after{content:" \25BE"}
+.p-ptab .hot{color:var(--tx);font-weight:600}
+/* settings */
+.p-srow{display:flex;align-items:center;gap:14px;padding:12px 0;border-top:1px solid var(--bd)}
+.p-srow:first-of-type{border-top:0;padding-top:4px}
+.p-srow .t{font-weight:600;font-size:13px}.p-srow .d{color:var(--mu);font-size:12px}
+.p-srow > div:first-child{flex:1;min-width:0}
+.p-card h5{margin:0 0 10px;font-size:14px}
+.p-seg{display:flex;background:var(--pn2);border:1px solid var(--bd);border-radius:10px;padding:3px;gap:2px}
+.p-seg button{border:0;background:transparent;height:26px;padding:0 12px;border-radius:7px;font-size:12px;font-weight:600;color:var(--mu);transition:background-color .2s,color .2s}
+.p-seg button.on{background:var(--pn);color:var(--tx);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.p-sw{display:flex;gap:8px;flex-wrap:wrap}
+.p-sw button{width:24px;height:24px;border-radius:50%;border:0;padding:0;transition:transform .3s var(--spring),box-shadow .2s}
+.p-sw button:hover{transform:scale(1.14)}
+.p-sw button.on{box-shadow:0 0 0 2px var(--pn),0 0 0 4px currentColor}
+.p-stack{display:flex;flex-direction:column;gap:12px}
+/* tips + space */
+.p-tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.p-tips .p-card{display:flex;gap:12px}
+.p-tips .t{font-weight:600;font-size:13px}.p-tips .d{color:var(--mu);font-size:12px;margin-top:2px}
+.p-fold{display:grid;grid-template-columns:28px 150px 1fr 70px;align-items:center;gap:12px;padding:8px 0;font-size:13px}
+.p-fold .p-bar{margin:0}
+.p-fold .p-bar i{background:var(--ac)}
+.p-fold .r{text-align:right;color:var(--mu);font-variant-numeric:tabular-nums}
+/* toasts */
+.p-toasts{position:absolute;top:14px;right:14px;display:flex;flex-direction:column;align-items:flex-end;gap:8px;z-index:8;pointer-events:none}
+.p-toast{display:flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:12px;background:var(--pn);border:1px solid var(--bd);box-shadow:0 14px 34px rgba(0,0,0,.32);font-size:12.5px;font-weight:600;max-width:320px;position:relative;overflow:hidden;animation:ptin .5s var(--spring)}
+.p-toast.out{animation:ptout .3s var(--ease) forwards}
+.p-toast .p-dot{width:26px;height:26px;border-radius:8px}
+.p-toast .p-dot svg.i{width:13px;height:13px}
+.p-toast .tp{position:absolute;left:0;right:0;bottom:0;height:2px;opacity:.55;transform-origin:left;animation:ptp 3.2s linear forwards}
+/* notifications */
+.p-nc{position:absolute;top:10px;bottom:10px;left:230px;width:310px;z-index:9;background:var(--pn);border:1px solid var(--bd);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.42);display:flex;flex-direction:column;opacity:0;transform:translateX(-14px) scale(.98);transform-origin:top left;pointer-events:none;transition:opacity .25s,transform .45s var(--spring),background-color .3s}
+.p-nc.on{opacity:1;transform:none;pointer-events:auto}
+.p-nc .hd{display:flex;align-items:center;gap:6px;padding:14px 16px 8px;font-weight:700;font-size:15px}
+.p-nc .hd button{border:0;background:none;color:var(--mu);font-size:12px;padding:4px 6px;border-radius:6px}
+.p-nc .hd button:hover{background:var(--hv);color:var(--tx)}
+.p-nc .hd .sp{flex:1}
+.p-nc .bd{flex:1;overflow-y:auto;padding:0 6px 10px}
+.p-ni{display:flex;gap:10px;padding:10px;border-radius:12px;position:relative}
+.p-ni:hover{background:var(--hv)}
+.p-ni .p-dot{width:30px;height:30px}
+.p-ni .t{font-weight:600;font-size:12.5px;padding-right:12px}.p-ni .d{color:var(--mu);font-size:11.5px}.p-ni .w{color:var(--fa);font-size:10.5px;margin-top:2px}
+.p-ni.new{animation:ptin .5s var(--spring)}
+.p-ni.un::after{content:"";position:absolute;right:10px;top:14px;width:7px;height:7px;border-radius:50%;background:var(--ac)}
+/* guided tour */
+.lp.tour .p-nc{z-index:22}
+.p-hole{position:absolute;z-index:20;border-radius:12px;pointer-events:none;box-shadow:0 0 0 2px var(--ac),0 0 0 9999px rgba(4,6,12,.58);opacity:0;transition:left .45s var(--ease),top .45s var(--ease),width .45s var(--ease),height .45s var(--ease),opacity .3s}
+.lp.tour .p-hole{opacity:1}
+.p-hole.pulse::before{content:"";position:absolute;inset:-3px;border-radius:14px;border:2px solid var(--ac);animation:phole 1.6s ease-out infinite}
+.p-tip{position:absolute;z-index:21;width:280px;background:var(--pn);color:var(--tx);border:1px solid var(--bd);border-radius:14px;padding:14px 16px;box-shadow:0 22px 56px rgba(0,0,0,.5);opacity:0;pointer-events:none;transform:translateY(8px) scale(.98);transition:opacity .3s,transform .45s var(--spring),left .45s var(--ease),top .45s var(--ease)}
+.lp.tour .p-tip{opacity:1;pointer-events:auto;transform:none}
+.p-tip .stp{display:flex;align-items:center;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ac)}
+.p-tip .stp button{margin-left:auto;border:0;background:none;color:var(--fa);width:22px;height:22px;border-radius:6px;display:grid;place-items:center;padding:0}
+.p-tip .stp button:hover{background:var(--hv);color:var(--tx)}
+.p-tip .stp svg.i{width:13px;height:13px}
+.p-tip h4{margin:5px 0 4px;font-size:15px;letter-spacing:-.01em}
+.p-tip p{margin:0;color:var(--mu);font-size:12.5px;line-height:1.5}
+.p-tip .row{display:flex;align-items:center;gap:8px;margin-top:12px}
+.p-tip .dots{display:flex;gap:4px;flex:1}
+.p-tip .dots i{width:6px;height:6px;border-radius:3px;background:var(--bd);transition:width .3s,background-color .3s}
+.p-tip .dots i.on{width:16px;background:var(--ac)}
+.p-tip .dots i.done{background:color-mix(in srgb,var(--ac) 50%,var(--bd))}
+.p-tip .skip{border:0;background:none;color:var(--fa);font-size:12px;padding:4px 6px;border-radius:6px}
+.p-tip .skip:hover{color:var(--tx)}
+.p-tip .hint{display:inline-flex;align-items:center;gap:6px;color:var(--ac);font-size:12px;font-weight:600}
+.p-tip .hint i{width:7px;height:7px;border-radius:50%;background:var(--ac);animation:ppulse 1.2s ease-in-out infinite}
+.p-tip.done h4{font-size:17px}
+html.vtc::view-transition-old(root),html.vtc::view-transition-new(root){animation:none;mix-blend-mode:normal}
+html.vtc::view-transition-new(root){z-index:2}
+@keyframes ppage{from{opacity:0;transform:translateY(10px)}}
+@keyframes pspin{to{transform:rotate(360deg)}}
+@keyframes ppulse{50%{opacity:.35;transform:scale(.65)}}
+@keyframes pbell{15%{transform:rotate(16deg)}30%{transform:rotate(-13deg)}45%{transform:rotate(9deg)}60%{transform:rotate(-5deg)}75%{transform:rotate(2deg)}}
+@keyframes pnavpop{0%{transform:scale(.6) rotate(-12deg)}60%{transform:scale(1.18)}}
+@keyframes prp{to{transform:scale(1);opacity:0}}
+@keyframes porb{to{transform:translate(-50px,40px) scale(1.2)}}
+@keyframes pbump{0%{transform:scale(.88)}}
+@keyframes ptin{from{opacity:0;transform:translateY(-10px) scale(.95)}}
+@keyframes ptout{to{opacity:0;transform:translateX(24px)}}
+@keyframes ptp{to{transform:scaleX(0)}}
+@keyframes phole{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(1.1)}}
+@media(max-width:760px){
+  .lp{height:580px}
+  .lp.max{height:640px}
+  .p-tb .tt{font-size:11.5px}
+  .p-body{flex-direction:column}
+  .p-side{width:auto;flex-direction:row;align-items:center;overflow-x:auto;overflow-y:hidden;padding:8px;gap:4px;border-right:0;border-bottom:1px solid var(--bd)}
+  .p-brand,.p-search,.p-foot,.p-sep{display:none}
+  .p-top{margin:0 4px 0 0}
+  .p-nav{width:auto;padding:0 12px}
+  .p-nav .n{display:none}
+  .p-pg{padding:16px}
+  .p-h h3{font-size:19px}
+  .p-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .p-drive .top{flex-wrap:wrap;row-gap:4px}.p-drive .top .d{width:100%;margin-left:0}.p-pill{white-space:nowrap}
+  .p-tile{padding:12px}.p-tile .ic{width:26px;height:26px;margin-bottom:8px}.p-tile b{font-size:15px}.p-tile small{font-size:11px}
+  .p-meters{grid-template-columns:1fr 1fr}
+  .p-tips{grid-template-columns:1fr}
+  .p-lh,.p-row{grid-template-columns:28px 1fr 74px}
+  .p-st .p-lh,.p-st .p-row{grid-template-columns:1fr 50px}
+  .p-ptab .p-lh,.p-ptab .p-row{grid-template-columns:1fr 64px 80px}
+  .lp .hm{display:none}
+  .p-fold{grid-template-columns:24px 1fr 60px}
+  .p-fold .p-bar{grid-column:2/4;grid-row:2}
+  .p-nc{left:8px;right:8px;width:auto;top:56px}
+  .p-tip{width:auto;left:10px!important;right:10px}
+  .p-toasts{left:14px}
+}
+@media(prefers-reduced-motion:reduce){.lp *{animation:none!important}}
+section{padding:90px 0}
+.sh{text-align:center;max-width:640px;margin:0 auto 46px}
+.sh h2{font-size:clamp(30px,4vw,44px)}
+.sh p{color:var(--muted);font-size:17px;margin:12px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.eyebrow{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:12px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:26px;transition:transform .35s var(--ease),border-color .3s,box-shadow .35s}
+.card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 45%,var(--border));box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.card .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent2);margin-bottom:16px}
+.card h3{font-size:19px;margin-bottom:6px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.step .n{width:46px;height:46px;border-radius:13px;background:var(--accent);display:grid;place-items:center;font-weight:700;font-size:20px;margin-bottom:14px;box-shadow:0 8px 24px color-mix(in srgb,var(--accent) 40%,transparent)}
+.step h3{font-size:20px;margin-bottom:6px}.step p{margin:0;color:var(--muted)}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px;background:var(--panel);border:1px solid var(--border);border-radius:22px;padding:36px}
+.trust h3{font-size:18px;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.trust h3 svg{color:#34D399}
+.trust p{margin:0;color:var(--muted);font-size:15px}
+.faq{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+details{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:0 24px;transition:border-color .3s}
+details[open]{border-color:color-mix(in srgb,var(--accent) 40%,var(--border))}
+summary{list-style:none;cursor:pointer;padding:20px 0;font-weight:600;font-size:17px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary svg{transition:transform .3s var(--ease);color:var(--muted)}
+details[open] summary svg{transform:rotate(45deg)}
+details p{margin:0 0 20px;color:var(--muted)}
+.final{text-align:center;background:linear-gradient(135deg,#1E6BFF,#3D82FF);border-radius:28px;padding:64px 28px;position:relative;overflow:hidden}
+.final h2{font-size:clamp(30px,4vw,44px);color:#fff}
+.final p{color:#E3EDFF;margin:12px 0 28px;font-size:17px}
+.final .btn{background:#fff;color:#0B2A6B}
+.final .btn:hover{transform:translateY(-1px)}
+footer{border-top:1px solid var(--border);padding:30px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a:hover{color:var(--text)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.links a:not(.btn){display:none}section{padding:64px 0}.hero{padding-top:56px}
+  .ctas .btn.big{width:100%;max-width:360px}
+  .grid{grid-template-columns:1fr;gap:12px}
+  .card{display:grid;grid-template-columns:44px 1fr;column-gap:16px;padding:20px}
+  .card .ic{grid-row:span 2;margin:0}
+  .card h3{font-size:17px;margin-bottom:3px}.card p{font-size:14.5px}
+  .steps{grid-template-columns:1fr;gap:22px}
+  .step{display:grid;grid-template-columns:46px 1fr;column-gap:16px}
+  .step .n{grid-row:span 2;margin:0}
+  .sh{margin-bottom:32px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="logo" viewBox="0 0 160 160"><rect width="160" height="160" rx="40" fill="#1E6BFF"/><path d="M60 124 L44 140" stroke="#fff" stroke-opacity=".45" stroke-width="5" stroke-linecap="round"/><path d="M36 88 L20 104" stroke="#fff" stroke-opacity=".45" stroke-width="5" stroke-linecap="round"/><g transform="rotate(45 80 80)"><path d="M66 108 Q80 152 94 108 Z" fill="#FF8A1F"/><path d="M72 108 Q80 136 88 108 Z" fill="#FFD23F"/><path d="M58 78 L40 100 L40 112 L58 102 Z" fill="#BFDBFF"/><path d="M102 78 L120 100 L120 112 L102 102 Z" fill="#BFDBFF"/><rect x="66" y="100" width="28" height="9" rx="2" fill="#D6E2F5"/><path d="M80 22 C96 34 104 56 102 86 L102 102 L58 102 L58 86 C56 56 64 34 80 22 Z" fill="#fff"/><path d="M80 22 C87 27 93 35 97 44 L63 44 C67 35 73 27 80 22 Z" fill="#BFDBFF"/><path d="M76 90 L84 90 L84 112 L76 112 Z" fill="#BFDBFF"/><circle cx="80" cy="66" r="12" fill="#1E6BFF" stroke="#BFDBFF" stroke-width="5"/><circle cx="76" cy="62" r="3" fill="#fff"/></g></symbol>
+  <symbol id="dl" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></symbol>
+  <symbol id="gh" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="p-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></symbol>
+  <symbol id="p-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/></symbol>
+  <symbol id="p-pie" viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></symbol>
+  <symbol id="p-bars" viewBox="0 0 24 24"><path d="M4 20V11"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M21 20H3"/></symbol>
+  <symbol id="p-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="p-down" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></symbol>
+  <symbol id="p-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2.5"/><path d="M16 8V5.5A2.5 2.5 0 0 0 13.5 3h-8A2.5 2.5 0 0 0 3 5.5v8A2.5 2.5 0 0 0 5.5 16H8"/></symbol>
+  <symbol id="p-apps" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></symbol>
+  <symbol id="p-power" viewBox="0 0 24 24"><path d="M12 2v9"/><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/></symbol>
+  <symbol id="p-pulse" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></symbol>
+  <symbol id="p-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1.1 2V16h5v-.2c.1-.8.5-1.5 1.1-2A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="p-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+  <symbol id="p-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="p-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8.5 3 8.5H3S6 15 6 8"/><path d="M10.3 20a1.9 1.9 0 0 0 3.4 0"/></symbol>
+  <symbol id="p-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="p-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="p-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+  <symbol id="p-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4L21 8"/><path d="M21 3v5h-5"/></symbol>
+  <symbol id="p-alert" viewBox="0 0 24 24"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/></symbol>
+  <symbol id="p-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="p-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></symbol>
+  <symbol id="p-folder" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2.5h8.5A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></symbol>
+  <symbol id="p-file" viewBox="0 0 24 24"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5"/></symbol>
+  <symbol id="p-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></symbol>
+  <symbol id="p-zip" viewBox="0 0 24 24"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M11 5v2M11 9v2M11 13v2"/></symbol>
+  <symbol id="p-img" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></symbol>
+  <symbol id="p-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></symbol>
+  <symbol id="p-mem" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 11v2M10 11v2M14 11v2M18 11v2M6 17v3M18 17v3"/></symbol>
+  <symbol id="p-disk" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="p-wifi" viewBox="0 0 24 24"><path d="M2 8.8a15 15 0 0 1 20 0"/><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16.1a5 5 0 0 1 7 0"/><path d="M12 19.5h.01"/></symbol>
+  <symbol id="p-game" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3M16 12h.01M18 14h.01"/></symbol>
+  <symbol id="p-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+</svg>
+
+<header id="top"><div class="wrap nav">
+  <a href="#" class="brand" dir="ltr"><svg width="34" height="34"><use href="#logo"/></svg><b style="font-weight:700">Launch<span>PC</span></b><em class="badge" style="font-style:normal">BETA</em></a>
+  <nav class="links">
+    <a href="#features" data-ar="المزايا">Features</a><a href="#how" data-ar="كيف يعمل">How it works</a><a href="#whatsnew" data-ar="الجديد">What's new</a><a href="#faq" data-ar="الأسئلة">FAQ</a>
+    <button class="langbtn" id="langBtn" type="button" lang="ar">عربي</button>
+    <a class="btn primary sm dl" href="https://github.com/khaledahmed212/LaunchPC/releases/download/v0.1.1-beta/LaunchPC.exe" data-ar="تحميل">Download</a>
+  </nav>
+</div></header>
+
+<main>
+<section class="hero" style="padding-bottom:30px"><div class="wrap">
+  <span class="chip"><i></i><span data-ar="مجاني لويندوز 10 و 11">Free for Windows 10 and 11</span></span>
+  <h1 data-ar="جهازك كله، نظيف <span>من مكان واحد.</span>">Your whole PC, cleaned up <span>in one place.</span></h1>
+  <p class="lead" data-ar="يكشف لك LaunchPC ما يملأ قرصك ويبطئ جهازك: الملفات غير الضرورية، والملفات الضخمة، والملفات المكررة، والبرامج التي لا تستخدمها، والبرامج التي تعمل مع بدء ويندوز. ثم يساعدك على إصلاح كل ذلك بنقرة واحدة.">LaunchPC shows what's filling your drive and slowing you down: junk files, huge files, duplicates, apps you never use and apps that launch with Windows. Then it helps you fix it in a click.</p>
+  <div class="ctas" id="download">
+    <a class="btn primary big dl" href="https://github.com/khaledahmed212/LaunchPC/releases/download/v0.1.1-beta/LaunchPC.exe"><svg class="i"><use href="#dl"/></svg><span data-ar="تحميل لويندوز">Download for Windows</span></a>
+    <a class="btn ghost big" href="#features"><span data-ar="اكتشف ما يفعله">See what it does</span></a>
+  </div>
+  <div class="meta" id="meta">Version 0.1.1 Beta · 12.9 MB · No account needed</div>
+
+  <div class="trywrap reveal">
+    <div class="tryrow"><span class="live"><i></i><span data-ar="هذه معاينة تفاعلية. جرّب الضغط على أي شيء.">This is a live preview. Click around.</span></span>
+      <button class="btn ghost sm" id="tourBtn"><svg class="i"><use href="#p-play"/></svg><span data-ar="جولة سريعة في دقيقة">Take the 1-minute tour</span></button></div>
+    <div class="stage" id="stage">
+    <div class="lp" id="lp" data-theme="dark" aria-label="Interactive LaunchPC preview">
+      <div class="p-tb"><svg class="ti"><use href="#logo"/></svg><span class="tt">LaunchPC</span>
+        <button class="p-cap" data-cap="min" title="Minimize" aria-label="Minimize"><svg viewBox="0 0 10 10"><path d="M0 5.5h10"/></svg></button>
+        <button class="p-cap" data-cap="max" title="Maximize" aria-label="Maximize"><svg viewBox="0 0 10 10" id="maxIc"><rect x=".5" y=".5" width="9" height="9" rx="1.2"/></svg></button>
+        <button class="p-cap x" data-cap="close" title="Close" aria-label="Close"><svg viewBox="0 0 10 10"><path d="M.5.5l9 9M9.5.5l-9 9"/></svg></button></div>
+      <div class="p-body" id="pBody">
+        <aside class="p-side" id="pSide">
+          <div class="p-brand"><svg><use href="#logo"/></svg><b>Launch<span>PC</span></b><em>BETA</em></div>
+          <div class="p-top"><div class="p-search"><svg class="i"><use href="#p-search"/></svg>Search…<kbd>Ctrl K</kbd></div>
+            <button class="p-bell" id="pBell" data-act="bell" title="Notifications"><svg class="i"><use href="#p-bell"/></svg><b id="pBellN"></b></button></div>
+          <nav id="pNav"></nav>
+          <div class="p-foot" id="pFoot"><b>1.9 GB can be freed</b>Last scan just now</div>
+        </aside>
+        <div class="p-main" id="pMain"></div>
+        <div class="p-toasts" id="pToasts"></div>
+        <div class="p-nc" id="pNc"><div class="hd">Notifications<span class="sp"></span><button data-act="nc-clear">Clear all</button><button data-act="nc-close" aria-label="Close"><svg class="i" style="width:14px;height:14px"><use href="#p-x"/></svg></button></div><div class="bd" id="pNcB"></div></div>
+        <div class="p-hole" id="pHole"></div>
+        <div class="p-tip" id="pTip"></div>
+      </div>
+    </div>
+    <div class="closedhint" id="closedHint">Click <b>LaunchPC</b> on the taskbar to open it again</div>
+    <div class="taskbar">
+      <div class="tb-c">
+        <span class="tbk" title="Start"><svg viewBox="0 0 24 24"><path fill="#4CC2FF" d="M3 3h8.6v8.6H3zM12.4 3H21v8.6h-8.6zM3 12.4h8.6V21H3zM12.4 12.4H21V21h-8.6z"/></svg></span>
+        <span class="tbk" title="Search"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4-4"/></svg></span>
+        <span class="tbk" title="File Explorer"><svg viewBox="0 0 24 24"><path fill="#F5B83D" d="M2 6.5A2.5 2.5 0 0 1 4.5 4H9l2 2.5h8.5A2.5 2.5 0 0 1 22 9v8.5a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 17.5z"/><path fill="#FFD77A" d="M2 9h20v8.5a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 17.5z"/></svg></span>
+        <button class="tbk app open on" id="tbApp" title="LaunchPC"><svg><use href="#logo"/></svg></button>
+      </div>
+      <div class="tb-r"><span class="lang">ENG</span><span id="tbClock"></span></div>
+    </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <div class="sh reveal"><span class="eyebrow" data-ar="المزايا">Features</span><h2 data-ar="كل شيء في مكان واحد">Everything in one place</h2><p data-ar="لا داعي للبحث في الإعدادات والمجلدات. LaunchPC يجمع كل شيء لك.">No more digging through settings and folders. LaunchPC brings it all together.</p></div>
+  <div class="grid">
+    <div class="card reveal"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/></svg></div><h3 data-ar="سلة المحذوفات والملفات غير الضرورية">Trash &amp; junk</h3><p data-ar="أفرغ سلة المحذوفات وامسح الملفات المؤقتة وتقارير الأعطال وبقايا تحديثات ويندوز القديمة.">Empty the Recycle Bin and clear temp files, crash reports and old Windows Update downloads.</p></div>
+    <div class="card reveal"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></svg></div><h3 data-ar="المساحة حسب المجلد">Space by folder</h3><p data-ar="اعرف أي المجلدات تأخذ أكبر مساحة، وادخل إليها لتكتشف ما الذي يملأ قرصك.">See which folders take the most space and click into them to find what's eating your drive.</p></div>
+    <div class="card reveal"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M4 20V11"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M21 20H3"/></svg></div><h3 data-ar="الملفات الأكبر وغير المستخدمة">Largest &amp; unused files</h3><p data-ar="اعثر على أكبر ملفاتك والملفات التي لم تفتحها منذ شهور، مع البحث والفلاتر.">Find your biggest files and the ones you haven't opened in months, with search and filters.</p></div>
+    <div class="card reveal"><div class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2.5"/><path d="M16 8V5.5A2.5 2.5 0 0 0 13.5 3h-8A2.5 2.5 0 0 0 3 5.5v8A2.5 2.5 0 0 0 5.5 16H8"/></svg></div><h3 data-ar="الملفات المكررة">Duplicate finder</h3><p data-ar="اكتشف النسخ المتطابقة من نفس الملف واحتفظ بنسخة واحدة فقط.">Spot exact copies of the same file and keep just one.</p></div>
+    <div class="card reveal"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M12 2v9"/><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/></svg></div><h3 data-ar="تشغيل أسرع">Faster startup</h3><p data-ar="أوقف البرامج التي تعمل مع بدء ويندوز، بما فيها تطبيقات المتجر والمهام المجدولة. عناصر ويندوز الأساسية تبقى محمية.">Turn off apps that launch with Windows, including Store apps and scheduled ones. Windows' own items stay protected.</p></div>
+    <div class="card reveal"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><h3 data-ar="الأداء المباشر">Live performance</h3><p data-ar="المعالج والذاكرة والقرص والشبكة، مع قائمة تشبه مدير المهام للبرامج الأكثر استهلاكًا.">CPU, memory, disk and network, with a Task Manager style list of the apps using the most.</p></div>
+    <div class="card reveal"><div class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></div><h3 data-ar="البرامج المثبتة">Installed apps</h3><p data-ar="شاهد كل البرامج مرتبة حسب الحجم، واحذف ما لا تستخدمه.">See every program sorted by size and uninstall the ones you don't use.</p></div>
+    <div class="card reveal"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1.1 2V16h5v-.2c.1-.8.5-1.5 1.1-2A6 6 0 0 0 12 3z"/></svg></div><h3 data-ar="نصائح وتوصيات">Tips &amp; recommendations</h3><p data-ar="تقييم لصحة جهازك، وإصلاحات بنقرة واحدة، ونصائح بسيطة للسرعة والتخزين والألعاب والأمان.">A health score, one-click fixes and simple tips for speed, storage, gaming and safety.</p></div>
+    <div class="card reveal"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4L21 8"/><path d="M21 3v5h-5"/></svg></div><h3 data-ar="يحدّث نفسه">Updates itself</h3><p data-ar="وضع فاتح وداكن، وألوان مميزة، والإصدارات الجديدة تُثبَّت من داخل التطبيق مباشرة.">Light and dark mode, accent colors, and new versions install right from inside the app.</p></div>
+  </div>
+</div></section>
+
+<section id="how" style="padding-top:20px"><div class="wrap">
+  <div class="sh reveal"><span class="eyebrow" data-ar="كيف يعمل">How it works</span><h2 data-ar="ثلاث خطوات لجهاز أنظف">Three steps to a cleaner PC</h2></div>
+  <div class="steps">
+    <div class="step reveal"><div class="n">1</div><h3 data-ar="حمّله وافتحه">Download and open</h3><p data-ar="تطبيق صغير، بدون تثبيت وبدون حساب.">One small app. No installer and no account.</p></div>
+    <div class="step reveal"><div class="n">2</div><h3 data-ar="يفحص تلقائيًا">It scans automatically</h3><p data-ar="يفحص LaunchPC أقراصك ومجلداتك وبرامج بدء التشغيل في الخلفية.">LaunchPC checks your drives, folders and startup apps in the background.</p></div>
+    <div class="step reveal"><div class="n">3</div><h3 data-ar="أصلح ما يهم">Fix what matters</h3><p data-ar="اتبع التوصيات ووفّر المساحة ببضع نقرات.">Follow the recommendations and free up space in a few clicks.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap"><div class="trust reveal">
+  <div><h3><svg class="i"><use href="#check"/></svg><span data-ar="آمن من الأساس">Safe by design</span></h3><p data-ar="الملفات التي تحذفها تذهب إلى سلة المحذوفات أولًا، فيمكنك استرجاعها دائمًا.">Files you remove go to the Recycle Bin first, so you can always get them back.</p></div>
+  <div><h3><svg class="i"><use href="#check"/></svg><span data-ar="يبقى على جهازك">Stays on your PC</span></h3><p data-ar="الفحص يتم على جهازك، ولا يُرفع أي شيء إلى الإنترنت.">Scans run on your computer. Nothing is uploaded anywhere.</p></div>
+  <div><h3><svg class="i"><use href="#check"/></svg><span data-ar="بدون مسرّعات وهمية">No fake boosters</span></h3><p data-ar="لا «مسرّعات رام» ولا منظفات للسجل. فقط إصلاحات تفيد فعلًا.">No "RAM boosters" or registry cleaners. Only fixes that really help.</p></div>
+</div></div></section>
+
+<section id="whatsnew" style="padding-top:20px"><div class="wrap">
+  <div class="sh reveal"><span class="eyebrow" data-ar="الجديد">What's new</span><h2 data-ar="يتحسن باستمرار">Always getting better</h2><p data-ar="كل تحديث، مباشرة من GitHub. ملاحظات الإصدارات باللغة الإنجليزية.">Every update, straight from GitHub.</p></div>
+  <div class="rel reveal" id="relList">
+    <article class="ritem latest"><div class="rhead"><b>0.1.1 Beta</b><span class="tag">Latest</span><time datetime="2026-11-26">November 26, 2026</time></div>
+      <p>Notifications and smoother animations.</p>
+      <ul><li>Notification center: a bell with your history of cleanups, scans and alerts</li><li>Smart alerts when a drive is almost full, junk piles up, or a new app starts with Windows</li><li>Startup apps now show clean names, and apps listed twice (like OneDrive) show once</li><li>Smoother look: circle animation when switching light/dark, soft glows, ripples and more</li><li>New "Extra effects" switch in Settings for slower PCs</li></ul></article>
+    <article class="ritem"><div class="rhead"><b>0.1.0 Beta</b><time datetime="2026-11-26">November 26, 2026</time></div>
+      <p>The first public beta of LaunchPC.</p>
+      <ul><li>Health score and recommendations</li><li>Trash and junk cleanup</li><li>Space by folder, largest files, unused files and old downloads</li><li>Duplicate finder</li><li>Installed apps and startup apps</li><li>Live performance with a Task Manager style apps list</li><li>Light and dark mode, and in-app updates</li></ul></article>
+  </div>
+  <div class="rmore reveal"><a class="btn ghost sm" href="https://github.com/khaledahmed212/LaunchPC/releases" target="_blank" rel="noopener" data-ar="كل الإصدارات على GitHub">All versions on GitHub</a></div>
+</div></section>
+
+<section id="faq" style="padding-top:20px"><div class="wrap">
+  <div class="sh reveal"><span class="eyebrow" data-ar="الأسئلة">FAQ</span><h2 data-ar="أسئلة شائعة">Questions</h2></div>
+  <div class="faq">
+    <details class="reveal"><summary><span data-ar="هل LaunchPC مجاني؟">Is LaunchPC free?</span><svg class="i"><use href="#plus"/></svg></summary><p data-ar="نعم، تحميله واستخدامه مجاني.">Yes, it's free to download and use.</p></details>
+    <details class="reveal"><summary><span data-ar="هل سيحذف ملفاتي دون أن يسألني؟">Will it delete my files without asking?</span><svg class="i"><use href="#plus"/></svg></summary><p data-ar="أبدًا. أنت تختار ما تريد حذفه، وLaunchPC يسألك أولًا، والملفات المحذوفة تذهب إلى سلة المحذوفات لتتمكن من استرجاعها.">Never. You choose what to remove, LaunchPC asks first, and removed files go to the Recycle Bin so you can restore them.</p></details>
+    <details class="reveal"><summary><span data-ar="ويندوز يقول «Windows protected your PC». هل هذا طبيعي؟">Windows says "Windows protected your PC". Is that normal?</span><svg class="i"><use href="#plus"/></svg></summary><p data-ar="نعم. ويندوز يُظهر هذه الرسالة للتطبيقات الجديدة التي لم يرها كثيرًا بعد. اضغط «More info» (مزيد من المعلومات)، ثم «Run anyway» (تشغيل على أي حال).">Yes. Windows shows this for new apps it hasn't seen many times before. Click "More info", then "Run anyway".</p></details>
+    <details class="reveal"><summary><span data-ar="كيف أحصل على التحديثات؟">How do I get updates?</span><svg class="i"><use href="#plus"/></svg></summary><p data-ar="يتحقق LaunchPC من وجود إصدار جديد عند فتحه. عندما يصدر إصدار جديد، اضغط «Update now» وسيحدّث نفسه.">LaunchPC checks for new versions when it opens. When one is out, click "Update now" and it updates itself.</p></details>
+    <details class="reveal"><summary><span data-ar="على أي إصدارات ويندوز يعمل؟">Which Windows versions does it work on?</span><svg class="i"><use href="#plus"/></svg></summary><p data-ar="ويندوز 10 وويندوز 11 بنظام 64 بت. يستخدم متصفح Microsoft Edge الموجود أصلًا في ويندوز لعرض نافذته.">Windows 10 and Windows 11, 64-bit. It uses Microsoft Edge, which is already part of Windows, to draw its window.</p></details>
+    <details class="reveal"><summary><span data-ar="هل التطبيق متوفر بالعربية؟">Is the app in Arabic?</span><svg class="i"><use href="#plus"/></svg></summary><p data-ar="التطبيق نفسه باللغة الإنجليزية حاليًا، والموقع متوفر بالعربية.">The app itself is in English for now. This website is available in Arabic too.</p></details>
+    <details class="reveal"><summary><span data-ar="ماذا تعني «تجريبي»؟">What does "Beta" mean?</span><svg class="i"><use href="#plus"/></svg></summary><p data-ar="LaunchPC جديد وما زال يتحسن. كل شيء يعمل، لكن قد تلاحظ بعض النواقص. الإصدارات الجديدة تصلك عبر التحديثات داخل التطبيق.">LaunchPC is new and still getting better. Everything works, but you might spot rough edges. New versions arrive through in-app updates.</p></details>
+    <details class="reveal"><summary><span data-ar="وجدت مشكلة أو لديك فكرة؟">Found a bug or have an idea?</span><svg class="i"><use href="#plus"/></svg></summary><p data-ar="رائع! استخدم أزرار «أبلغ عن مشكلة» أو «اقترح فكرة» في الأسفل. تحتاج حسابًا مجانيًا على GitHub.">Great! Use the "Report a bug" or "Suggest an idea" buttons below. You'll need a free GitHub account.</p></details>
+  </div>
+</div></section>
+
+<section id="feedback" style="padding-top:10px"><div class="wrap"><div class="fb reveal">
+  <div class="fb-ic"><svg class="i" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5.1A8 8 0 1 1 21 12z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg></div>
+  <div class="fb-t"><h3 data-ar="ساعدنا نحسّن LaunchPC">Help make LaunchPC better</h3><p data-ar="وجدت مشكلة أو لديك فكرة؟ أخبرنا على GitHub. يأخذ دقيقة ويساعد كثيرًا.">Found a bug or have an idea? Tell us on GitHub. It takes a minute and helps a lot.</p></div>
+  <div class="fb-b">
+    <a class="btn ghost sm" href="https://github.com/khaledahmed212/LaunchPC/issues/new?template=bug.yml" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="14" rx="5"/><path d="M12 11v10M9 4l1.5 3M15 4l-1.5 3M3 13h4M17 13h4M4 8l3 2M20 8l-3 2M4 19l3-2M20 19l-3-2"/></svg><span data-ar="أبلغ عن مشكلة">Report a bug</span></a>
+    <a class="btn ghost sm" href="https://github.com/khaledahmed212/LaunchPC/issues/new?template=idea.yml" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1.1 2V16h5v-.2c.1-.8.5-1.5 1.1-2A6 6 0 0 0 12 3z"/></svg><span data-ar="اقترح فكرة">Suggest an idea</span></a>
+  </div>
+</div></div></section>
+
+<section style="padding-top:20px"><div class="wrap"><div class="final reveal">
+  <h2 data-ar="جاهز لتمنح جهازك دفعة؟">Ready to give your PC a boost?</h2>
+  <p data-ar="مجاني لويندوز 10 و 11.">Free for Windows 10 and 11.</p>
+  <a class="btn big dl" href="https://github.com/khaledahmed212/LaunchPC/releases/download/v0.1.1-beta/LaunchPC.exe"><svg class="i"><use href="#dl"/></svg><span data-ar="تحميل LaunchPC">Download LaunchPC</span></a>
+</div></div></section>
+</main>
+
+<footer><div class="wrap">
+  <span data-ar="© 2026 LaunchPC. صنعه خالد.">© 2026 LaunchPC. Made by Khaled.</span>
+  <span class="flinks"><a href="#features" data-ar="المزايا">Features</a><a href="#whatsnew" data-ar="الجديد">What's new</a><a href="#faq" data-ar="الأسئلة">FAQ</a><a href="https://github.com/khaledahmed212/LaunchPC/issues/new/choose" target="_blank" rel="noopener" data-ar="أبلغ عن مشكلة">Report a bug</a><a href="https://github.com/khaledahmed212/LaunchPC" target="_blank" rel="noopener">GitHub</a></span>
+</div></footer>
+
+<!-- shown after clicking Download -->
+<div class="dlm" id="dlm" hidden>
+  <div class="dlm-card" role="dialog" aria-modal="true" aria-labelledby="dlmT">
+    <button class="dlm-x" type="button" data-dlm-close aria-label="Close"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div id="dlmWin">
+      <div class="dlm-ok"><svg class="i" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></div>
+      <h3 id="dlmT" data-ar="بدأ التحميل!">Your download has started!</h3>
+      <p class="dlm-sub" data-ar="عند فتح <b>LaunchPC.exe</b> قد يُظهر ويندوز تحذيرًا أزرق لأن التطبيق جديد. هذا طبيعي. إليك ما تفعله:">When you open <b>LaunchPC.exe</b>, Windows may show a blue warning because the app is new. That's normal. Here's what to do:</p>
+      <div class="ss" id="ss" data-step="1" dir="ltr" aria-hidden="true">
+        <div class="ss-t">Windows protected your PC</div>
+        <div class="ss-b">Microsoft Defender SmartScreen prevented an unrecognized app from starting. Running this app might put your PC at risk.</div>
+        <span class="ss-more" id="ssMore">More info</span>
+        <div class="ss-info">App:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LaunchPC.exe<br>Publisher:&nbsp;&nbsp;Unknown publisher</div>
+        <div class="ss-btns"><span class="ss-btn run" id="ssRun">Run anyway</span><span class="ss-btn">Don't run</span></div>
+        <svg class="ss-cur" id="ssCur" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.5L10 19z" fill="#fff" stroke="#000" stroke-width="1.3" stroke-linejoin="round"/></svg>
+      </div>
+      <ol class="dlm-steps">
+        <li data-s="1" class="on"><b>1</b><span data-ar="اضغط <b>More info</b> (مزيد من المعلومات)">Click <b>More info</b></span></li>
+        <li data-s="2"><b>2</b><span data-ar="ثم اضغط <b>Run anyway</b> (تشغيل على أي حال)">Then click <b>Run anyway</b></span></li>
+      </ol>
+      <p class="dlm-note"><span data-ar="تحتاج لفعل هذا مرة واحدة فقط. لم يبدأ التحميل؟">You only need to do this once. Download didn't start?</span> <a class="dl again" href="https://github.com/khaledahmed212/LaunchPC/releases/download/v0.1.1-beta/LaunchPC.exe" data-ar="حاول مرة أخرى">Try again</a></p>
+    </div>
+    <div id="dlmOther" hidden>
+      <div class="dlm-ok pc"><svg class="i" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <h3 data-ar="LaunchPC لأجهزة ويندوز">LaunchPC is for Windows PCs</h3>
+      <p class="dlm-sub" data-ar="يبدو أنك على هاتف أو جهاز ماك. افتح هذه الصفحة على جهاز الكمبيوتر بنظام ويندوز لتحميله.">Looks like you're on a phone or a Mac. Open this page on your Windows PC to download it.</p>
+      <div class="dlm-link" dir="ltr">launchpc.github.io</div>
+      <div class="dlm-acts"><button class="btn primary sm" type="button" id="dlmShare" data-ar="أرسل الرابط لجهازي">Send the link to my PC</button><a class="btn ghost sm dl again" href="https://github.com/khaledahmed212/LaunchPC/releases/download/v0.1.1-beta/LaunchPC.exe" data-ar="تحميل على أي حال">Download anyway</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// sticky header border
+addEventListener("scroll", () => document.querySelector("header").classList.toggle("scrolled", scrollY > 10), {passive:true});
+// fade sections in as you scroll
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.12});
+document.querySelectorAll(".reveal").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 70 + "ms"; io.observe(el); });
+// ---------- interactive LaunchPC preview + guided tour
+(() => {
+const lp = document.getElementById("lp");
+if (!lp) return;
+const $ = (s, r = lp) => r.querySelector(s), $$ = (s, r = lp) => [...r.querySelectorAll(s)];
+const KB = 1024, MB = KB * 1024, GB = MB * 1024;
+const fmt = b => b >= GB ? (b / GB).toFixed(1) + " GB" : b >= MB ? Math.round(b / MB) + " MB" : b > 0 ? Math.max(1, Math.round(b / KB)) + " KB" : "0 B";
+const I = (id, cls = "i") => `<svg class="${cls}"><use href="#p-${id}"/></svg>`;
+const CHECK = `<svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>`;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;"})[c]);
+const mobile = () => innerWidth <= 760;
+
+/* ---------- example data (a made-up PC) */
+const S = {
+  page: "overview", score: 68, shown: 0,
+  disk: {total: 476 * GB, used: 402 * GB},
+  junk: [
+    {k:"bin", n:"Recycle Bin", d:"Files you deleted earlier", s:1.24 * GB, on:true},
+    {k:"tmp", n:"Temporary files", d:"Leftovers that apps forgot to clean up", s:412 * MB, on:true},
+    {k:"wu", n:"Windows Update leftovers", d:"Old update downloads Windows no longer needs", s:236 * MB, on:true},
+    {k:"crash", n:"Crash reports", d:"Logs from apps that crashed", s:38 * MB, on:true},
+    {k:"thumb", n:"Thumbnail cache", d:"Picture previews. Windows rebuilds them when needed", s:61 * MB, on:false},
+  ],
+  files: {
+    largest: [
+      ["ubuntu-24.04-desktop.iso", "Downloads", "Mar 2026", 5.9 * GB, "zip"],
+      ["Recording 2026-11-02.mp4", "Videos", "Nov 2026", 4.1 * GB, "video"],
+      ["Minecraft world backup.zip", "Documents", "Jun 2025", 2.3 * GB, "zip"],
+      ["Steam shader cache", "AppData", "Nov 2026", 1.6 * GB, "folder"],
+      ["Project final render.mov", "Videos", "Aug 2026", 1.2 * GB, "video"],
+      ["Family photos 2024.zip", "Pictures", "Jan 2025", 890 * MB, "zip"],
+      ["blender-5.2.3-windows-x64.msi", "Downloads", "Oct 2026", 366 * MB, "file"],
+      ["Obsidian-1.15.0.exe", "Downloads", "Oct 2026", 340 * MB, "file"],
+    ],
+    unused: [
+      ["Old school project.pptx", "Documents", "Not opened in 1 year", 184 * MB, "file"],
+      ["GoPro clips 2024", "Videos", "Not opened in 2 years", 2.7 * GB, "video"],
+      ["Setup files (old PC).zip", "Downloads", "Not opened in 14 months", 1.1 * GB, "zip"],
+      ["Screenshots 2025", "Pictures", "Not opened in 9 months", 640 * MB, "img"],
+      ["Mod pack v2.zip", "Documents", "Not opened in 8 months", 420 * MB, "zip"],
+    ],
+    downloads: [
+      ["ChatGPT Installer.exe", "Downloads", "2 months old", 0.8 * MB, "file"],
+      ["RobloxStudioInstaller.exe", "Downloads", "3 months old", 13 * MB, "file"],
+      ["Zoom Setup.exe", "Downloads", "3 months old", 7.1 * MB, "file"],
+      ["taiban-v7.6.zip", "Downloads", "4 months old", 17.5 * MB, "zip"],
+      ["Discord_backup_codes.txt", "Downloads", "8 months old", 0.2 * MB, "file"],
+    ],
+    duplicates: [
+      ["IMG_2041.jpg", "Pictures and Downloads", "2 copies", 4.2 * MB, "img"],
+      ["Holiday video.mp4", "Videos and Desktop", "2 copies", 820 * MB, "video"],
+      ["Song (Slowed).mp3", "Downloads", "3 copies", 7.4 * MB, "file"],
+      ["Report final FINAL.docx", "Documents and Desktop", "2 copies", 2.1 * MB, "file"],
+    ],
+  },
+  sel: {},
+  startup: [
+    {n:"Discord", p:"Discord Inc.", imp:"High", c:"#5865F2", on:true},
+    {n:"Steam", p:"Valve", imp:"High", c:"#1B2838", on:true},
+    {n:"Spotify", p:"Spotify AB", imp:"Medium", c:"#1DB954", on:true},
+    {n:"OneDrive", p:"Microsoft", imp:"Medium", c:"#0A64D6", on:true},
+    {n:"Epic Games Launcher", p:"Epic Games", imp:"Medium", c:"#333", on:false},
+    {n:"Microsoft Teams", p:"Microsoft", imp:"Low", c:"#5B5FC7", on:true},
+    {n:"NZXT CAM", p:"NZXT", imp:"Low", c:"#7C3AED", on:true},
+  ],
+  apps: [["Call of Duty", "Activision", 182 * GB], ["Forza Horizon 6", "Microsoft Studios", 134 * GB], ["Adobe Premiere Pro", "Adobe", 9.8 * GB], ["Blender", "Blender Foundation", 1.3 * GB], ["Discord", "Discord Inc.", 410 * MB], ["Spotify", "Spotify AB", 380 * MB]],
+  folders: [["Games", 214 * GB], ["Videos", 61 * GB], ["Downloads", 38 * GB], ["AppData", 27 * GB], ["Pictures", 19 * GB], ["Documents", 11 * GB]],
+  procs: [
+    {n:"Chrome", k:9, cpu:9, mem:1.9 * GB, disk:0.4},
+    {n:"Discord", k:4, cpu:3, mem:620 * MB, disk:0.1},
+    {n:"Steam", k:3, cpu:1, mem:410 * MB, disk:0},
+    {n:"Windows Explorer", k:1, cpu:1, mem:180 * MB, disk:0.2},
+    {n:"Spotify", k:5, cpu:2, mem:350 * MB, disk:0},
+    {n:"Medal", k:2, cpu:5, mem:540 * MB, disk:1.1},
+    {n:"LaunchPC", k:1, cpu:0.5, mem:95 * MB, disk:0},
+  ],
+  sort: "cpu",
+  hist: {cpu:[], mem:[], disk:[], net:[]},
+  notifs: [
+    {t:"Drive C: is almost full", d:"Only 74 GB left. A full drive makes Windows slow.", k:"warn", w:"2 min ago", un:true},
+    {t:"Scan finished", d:"128,402 files checked · 4.8 GB in unused files", k:"good", w:"3 min ago", un:true},
+  ],
+};
+const PAGES = [
+  ["overview", "Overview", "grid"], ["junk", "Trash & junk", "trash"], ["space", "Space by folder", "pie"], ["largest", "Largest files", "bars"],
+  ["unused", "Unused files", "clock"], ["downloads", "Old downloads", "down"], ["duplicates", "Duplicates", "copy"], ["apps", "Installed apps", "apps"],
+  ["startup", "Startup apps", "power"], ["performance", "Performance", "pulse"], ["tips", "Tips", "bulb"], ["-"], ["settings", "Settings", "sliders"],
+];
+const junkTotal = () => S.junk.reduce((a, j) => a + j.s, 0);
+const level = () => S.score >= 85 ? ["good", "Great", "Looking good"] : S.score >= 60 ? ["warn", "Okay", "Could be better"] : ["bad", "Needs attention", "Needs attention"];
+
+/* ---------- shell */
+$("#pNav").innerHTML = PAGES.map(([id, label, icon]) => id === "-" ? `<div class="p-sep"></div>` :
+  `<button class="p-nav${id === S.page ? " on" : ""}" data-go="${id}">${I(icon)}${label}<span class="n" data-n="${id}"></span></button>`).join("");
+$("#pMain").innerHTML = PAGES.filter(p => p[0] !== "-").map(([id]) => `<section class="p-pg${id === S.page ? " on" : ""}" data-page="${id}"></section>`).join("");
+const page = id => $(`.p-pg[data-page="${id}"]`);
+
+function go(id) {
+  if (S.page === id) return fire("go:" + id);
+  S.page = id;
+  closeNC();
+  $$(".p-nav").forEach(b => b.classList.toggle("on", b.dataset.go === id));
+  $$(".p-pg").forEach(p => p.classList.toggle("on", p.dataset.page === id));
+  render(id);
+  page(id).scrollTop = 0;
+  if (mobile()) { const b = $(`.p-nav[data-go="${id}"]`), side = $("#pSide"); side.scrollTo({left:b.offsetLeft - 60, behavior:"smooth"}); }
+  fire("go:" + id);
+}
+
+/* ---------- pages */
+const head = (title, sub, right = "") => `<div class="p-h"><div><h3>${title}</h3><p>${sub}</p></div><div class="sp"></div>${right}</div>`;
+const R = {
+  overview() {
+    const [lv, word, pill] = level(), jt = junkTotal(), unused = S.files.unused.reduce((a, f) => a + f[3], 0);
+    const startOn = S.startup.filter(s => s.on).length, pct = S.disk.used / S.disk.total * 100;
+    const recs = [];
+    if (jt > 0) recs.push(["warn", "trash", `${fmt(jt)} of junk and trash`, "Empty the Recycle Bin and clear temp files.", "Quick clean", "qclean"]);
+    if (startOn > 4) recs.push(["tip", "power", `${startOn} apps start with Windows`, "Turning some off makes your PC start faster.", "Review", "go:startup"]);
+    recs.push(["tip", "bars", `${fmt(S.files.largest.slice(0, 3).reduce((a, f) => a + f[3], 0))} in your 3 biggest files`, "Check if you still need them.", "Show me", "go:largest"]);
+    if (!jt && startOn <= 4) recs.unshift(["good", "check", "Nice work!", "Your PC is in good shape. Scan again any time.", "Scan again", "scan"]);
+    page("overview").innerHTML = head("Overview", "Everything about your PC's storage and speed, in one place.",
+      `<button class="p-btn" data-act="scan">${I("refresh")}Scan again</button><button class="p-btn pri" data-act="qclean" data-tour="qclean">${I("spark")}Quick clean</button>`) +
+      `<div class="p-card p-hero glow" data-tour="score"><div class="p-ring"><svg viewBox="0 0 100 100"><circle class="bgc" cx="50" cy="50" r="40"/><circle class="fg" id="pRing" cx="50" cy="50" r="40"/></svg><b><span id="pScore">${S.shown}</span><small>SCORE</small></b></div>
+        <div class="tx"><span class="p-pill ${lv}">${pill}</span><h4>PC health: ${word}</h4><div class="d" id="pScanTxt">Last scan just now · 128,402 files</div></div></div>
+      <div class="p-grid">
+        <button class="p-card p-tile glow" data-go="junk"><div class="ic">${I("trash")}</div><small>Trash &amp; junk</small><b id="pJunkT">${fmt(jt)}</b></button>
+        <button class="p-card p-tile glow" data-go="unused"><div class="ic">${I("clock")}</div><small>Unused files</small><b>${fmt(unused)}</b></button>
+        <button class="p-card p-tile glow" data-go="startup"><div class="ic">${I("power")}</div><small>Startup apps</small><b>${startOn} on</b></button>
+      </div>
+      <div class="p-card p-drive glow" style="margin-top:12px"><div class="top"><b>Drive C:</b><span class="p-pill ${pct >= 80 ? "warn" : "good"}">${pct.toFixed(0)}% full</span><span class="d">${fmt(S.disk.total - S.disk.used)} free of ${fmt(S.disk.total)}</span></div><div class="p-bar"><i id="pDrv"></i></div></div>
+      <div class="p-sub">Recommended for you</div>
+      <div class="p-card">${recs.map(([k, ic, t, d, b, a]) => `<div class="p-rec"><div class="p-dot ${k}">${I(ic)}</div><div><div class="t">${t}</div><div class="d">${d}</div></div><button class="p-btn${a === "qclean" ? " pri" : ""}" ${a.startsWith("go:") ? `data-go="${a.slice(3)}"` : `data-act="${a}"`}>${b}</button></div>`).join("")}</div>`;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const ring = $("#pRing"); if (!ring) return;
+      ring.style.stroke = `var(--${lv})`;
+      ring.style.strokeDashoffset = 251.3 * (1 - S.score / 100);
+      const bar = $("#pDrv"); bar.style.width = pct + "%"; bar.style.background = pct >= 80 ? "var(--warn)" : "var(--ac)";
+      countTo($("#pScore"), S.shown, S.score, v => Math.round(v)); S.shown = S.score;
+    }));
+  },
+  junk() {
+    const sel = S.junk.filter(j => j.on && j.s > 0), tot = sel.reduce((a, j) => a + j.s, 0);
+    page("junk").innerHTML = head("Trash &amp; junk", "Safe to remove. Windows and your apps don't need these.",
+      `<button class="p-btn pri" data-act="junkclean" ${tot ? "" : "disabled"}>${I("trash")}Clean ${tot ? fmt(tot) : ""}</button>`) +
+      (junkTotal() ? `<div class="p-list">${S.junk.map((j, i) => `<div class="p-row${j.on && j.s ? " sel" : ""}" data-junk="${i}" style="grid-template-columns:30px 1fr 80px"><div class="p-cb">${CHECK}</div>
+        <div class="nm"><div><b>${j.n}</b><span>${j.d}</span></div></div><div class="r">${fmt(j.s)}</div></div>`).join("")}</div>`
+      : `<div class="p-card p-empty"><div class="ic">${I("check")}</div><b>All clean</b>No trash or junk files left. Nice!</div>`);
+  },
+  space() {
+    const max = S.folders[0][1];
+    page("space").innerHTML = head("Space by folder", "Which folders take up the most space on Drive C:.") +
+      `<div class="p-card">${S.folders.map(([n, s]) => `<div class="p-fold"><div class="p-fi" style="width:26px;height:26px">${I("folder")}</div><b style="font-weight:600">${n}</b><div class="p-bar"><i style="width:0" data-w="${s / max * 100}"></i></div><span class="r">${fmt(s)}</span></div>`).join("")}</div>`;
+    requestAnimationFrame(() => requestAnimationFrame(() => $$(".p-fold .p-bar i", page("space")).forEach(i => i.style.width = i.dataset.w + "%")));
+  },
+  apps() {
+    page("apps").innerHTML = head("Installed apps", "Sorted by size. Uninstall the ones you don't use.") +
+      `<div class="p-list">${S.apps.map(([n, p, s], i) => `<div class="p-row" style="grid-template-columns:1fr 80px 96px;cursor:default"><div class="nm"><div class="p-av" style="background:hsl(${i * 53 + 200} 60% 48%)">${n[0]}</div><div><b>${n}</b><span>${p}</span></div></div><div class="r">${fmt(s)}</div><div class="r"><button class="p-btn" data-act="uninstall" data-n="${esc(n)}">Uninstall</button></div></div>`).join("")}</div>`;
+  },
+  startup() {
+    const on = S.startup.filter(s => s.on).length;
+    page("startup").innerHTML = head("Startup apps", "These open when Windows starts. Turning one off doesn't uninstall it.") +
+      `<div class="p-note">${I("shield")}<span><b style="color:var(--tx)">${on} of ${S.startup.length} apps</b> start with Windows. Windows' own items are hidden, so you can't break anything.</span></div>
+      <div class="p-list p-st"><div class="p-lh"><span>App</span><span class="hm">Impact</span><span class="r">On</span></div>
+      ${S.startup.map((s, i) => `<div class="p-row${s.on ? "" : " off"}" data-app="${esc(s.n)}"><div class="nm"><div class="p-av" style="background:${s.c}">${s.n[0]}</div><div><b>${s.n}</b><span>${s.p}</span></div></div><span class="p-imp ${s.imp} hm">${s.imp}</span><div class="r"><button class="p-tg${s.on ? " on" : ""}" data-st="${i}" aria-label="Start ${esc(s.n)} with Windows"></button></div></div>`).join("")}</div>`;
+  },
+  performance() {
+    page("performance").innerHTML = head("Performance", "Live readings, updated every second. Click a column to see which apps use the most.") +
+      `<div class="p-meters">${[["cpu", "CPU", "cpu"], ["mem", "Memory", "mem"], ["disk", "Disk", "disk"], ["net", "Network", "wifi"]].map(([k, l, ic]) =>
+        `<div class="p-card p-meter glow"><div class="top">${I(ic)}${l}</div><b id="pm-${k}">–</b><div class="d" id="pmd-${k}">&nbsp;</div><svg class="sp" viewBox="0 0 100 34" preserveAspectRatio="none"><path class="a" id="pa-${k}"/><path class="l" id="pl-${k}"/></svg></div>`).join("")}</div>
+      <div class="p-list p-ptab"><div class="p-lh" data-tour="cols"><span>App</span><span class="r hm">Count</span><button class="r${S.sort === "cpu" ? " on" : ""}" data-sort="cpu">CPU</button><button class="r${S.sort === "mem" ? " on" : ""}" data-sort="mem">Memory</button><button class="r hm${S.sort === "disk" ? " on" : ""}" data-sort="disk">Disk</button></div><div id="pProcs"></div></div>`;
+    tick(true);
+  },
+  tips() {
+    const tips = [["spark", "Restart once a week", "It clears memory and finishes updates that are waiting."], ["game", "Turn on Game Mode", "Settings → Gaming → Game Mode. Windows gives your game priority."],
+      ["power", "Fewer startup apps", "Each one you turn off makes Windows start a little faster."], ["disk", "Keep 15% of your drive free", "Windows slows down when the drive is almost full."],
+      ["shield", "Keep Windows updated", "Updates fix security holes and often speed things up."], ["lock", "Skip \"RAM boosters\"", "They don't make your PC faster. LaunchPC never uses tricks like that."]];
+    page("tips").innerHTML = head("Tips", "Simple things that really help.") + `<div class="p-tips">${tips.map(([ic, t, d]) => `<div class="p-card glow"><div class="p-dot tip">${I(ic)}</div><div><div class="t">${t}</div><div class="d">${d}</div></div></div>`).join("")}</div>`;
+  },
+  settings() {
+    const th = lp.dataset.theme, ac = getComputedStyle(lp).getPropertyValue("--ac").trim().toUpperCase();
+    const colors = [["Blue", "#1E6BFF"], ["Purple", "#8B5CF6"], ["Teal", "#0EA5A4"], ["Green", "#16A34A"], ["Orange", "#F97316"], ["Pink", "#EC4899"]];
+    page("settings").innerHTML = head("Settings", "Make LaunchPC look and work the way you like.") +
+      `<div class="p-stack"><div class="p-card"><h5>Appearance</h5>
+        <div class="p-srow"><div><div class="t">Theme</div><div class="d">Follow Windows, or pick light or dark.</div></div><div class="p-seg" data-tour="theme">${["Dark", "Light"].map(t => `<button class="${th === t.toLowerCase() ? "on" : ""}" data-theme-set="${t.toLowerCase()}">${t}</button>`).join("")}</div></div>
+        <div class="p-srow"><div><div class="t">Accent color</div><div class="d">Used for buttons and highlights.</div></div><div class="p-sw">${colors.map(([n, c]) => `<button title="${n}" data-accent="${c}" class="${ac === c ? "on" : ""}" style="background:${c};color:${c}"></button>`).join("")}</div></div>
+        <div class="p-srow"><div><div class="t">Extra effects</div><div class="d">Glows, ripples and motion.</div></div><button class="p-tg on" data-flip></button></div></div>
+      <div class="p-card"><h5>Notifications</h5><div class="p-srow"><div><div class="t">Alerts about your PC</div><div class="d">Tells you when a drive is almost full or a new app starts with Windows.</div></div><button class="p-tg on" data-flip></button></div></div>
+      <div class="p-card"><h5>About</h5><div class="p-srow"><div><div class="t">LaunchPC 0.1.1 Beta</div><div class="d">You're on the latest version.</div></div><button class="p-btn" data-act="upd">${I("refresh")}Check for updates</button></div></div></div>`;
+  },
+};
+// file pages share one layout
+for (const key of ["largest", "unused", "downloads", "duplicates"]) {
+  const meta = {largest:["Largest files", "Your biggest files. Big ones you don't need are the fastest way to free space.", "Folder"],
+    unused:["Unused files", "Files you haven't opened in over 6 months.", "Last opened"], downloads:["Old downloads", "Installers and files in Downloads older than a month.", "Age"],
+    duplicates:["Duplicates", "Exact copies of the same file. Keep one, remove the rest.", "Where"]}[key];
+  R[key] = () => {
+    const rows = S.files[key], sel = S.sel[key] ||= new Set();
+    const sz = rows.filter(r => sel.has(r[0])).reduce((a, r) => a + r[3], 0);
+    page(key).innerHTML = head(meta[0], meta[1]) + (rows.length ? `<div data-tour="files-${key}"><div class="p-selbar"><button class="p-btn" data-act="selall" data-k="${key}">${sel.size === rows.length ? "Clear selection" : "Select all"}</button>
+      <span class="cnt" id="pCnt-${key}">${sel.size ? `<b style="color:var(--tx)">${sel.size} selected</b> · ${fmt(sz)}` : `${rows.length} files · ${fmt(rows.reduce((a, r) => a + r[3], 0))}`}</span><span class="sp"></span>
+      <button class="p-btn dng" data-act="recycle" data-k="${key}" ${sel.size ? "" : "disabled"}>${I("trash")}Move to Recycle Bin</button></div>
+      <div class="p-list"><div class="p-lh"><span></span><span>Name</span><span class="hm">${meta[2]}</span><span class="r">Size</span></div>
+      ${rows.map(r => `<div class="p-row${sel.has(r[0]) ? " sel" : ""}" data-f="${esc(r[0])}" data-k="${key}"><div class="p-cb">${CHECK}</div><div class="nm"><div class="p-fi">${I(r[4])}</div><div><b>${esc(r[0])}</b><span>${key === "largest" ? r[2] : r[1]}</span></div></div><span class="m hm">${key === "largest" ? r[1] : r[2]}</span><span class="r">${fmt(r[3])}</span></div>`).join("")}</div></div>`
+      : `<div class="p-card p-empty"><div class="ic">${I("check")}</div><b>Nothing left here</b>You've cleaned this list up. In the real app, files go to the Recycle Bin so you can get them back.</div>`);
+  };
+}
+function render(id = S.page) { R[id]?.(); counts(); }
+function counts() {
+  const n = {largest:S.files.largest.length, unused:S.files.unused.length, downloads:S.files.downloads.length, duplicates:S.files.duplicates.length, startup:S.startup.filter(s => s.on).length};
+  $$("[data-n]").forEach(el => { const v = n[el.dataset.n]; el.textContent = v || ""; el.style.display = v ? "" : "none"; });
+  const free = junkTotal();
+  $("#pFoot").innerHTML = free ? `<b>${fmt(free)} can be freed</b>Last scan just now` : `<b>All clean</b>Last scan just now`;
+}
+
+/* ---------- helpers */
+function countTo(el, from, to, f, ms = 1200) {
+  if (!el) return;
+  const t0 = performance.now();
+  (function step(now) { const t = Math.min(1, (now - t0) / ms), e = 1 - Math.pow(2, -10 * t); el.textContent = f(from + (to - from) * e); if (t < 1) requestAnimationFrame(step); })(t0);
+}
+function toast(msg, kind = "good") {
+  const icon = {good:"check", warn:"alert", tip:"spark", bad:"alert"}[kind];
+  const t = document.createElement("div");
+  t.className = "p-toast";
+  t.innerHTML = `<div class="p-dot ${kind}">${I(icon)}</div><span>${msg}</span><i class="tp" style="background:var(--${kind === "tip" ? "ac" : kind})"></i>`;
+  $("#pToasts").append(t);
+  setTimeout(() => { t.classList.add("out"); setTimeout(() => t.remove(), 320); }, 3200);
+}
+function notify(t, d, k = "good") {
+  S.notifs.unshift({t, d, k, w:"Just now", un:true, fresh:true});
+  renderNC();
+  const b = $("#pBell"); b.classList.remove("ring"); void b.offsetWidth; b.classList.add("ring");
+}
+function renderNC() {
+  const un = S.notifs.filter(n => n.un).length, badge = $("#pBellN");
+  badge.textContent = un; badge.classList.toggle("on", un > 0);
+  $("#pNcB").innerHTML = S.notifs.length ? S.notifs.map(n => { const ic = {good:"check", warn:"alert", tip:"bell"}[n.k] || "bell"; const h = `<div class="p-ni${n.un ? " un" : ""}${n.fresh ? " new" : ""}"><div class="p-dot ${n.k}">${I(ic)}</div><div><div class="t">${n.t}</div><div class="d">${n.d}</div><div class="w">${n.w}</div></div></div>`; n.fresh = false; return h; }).join("")
+    : `<div class="p-empty" style="padding:50px 10px"><b>You're all caught up</b>Cleanups, scans and alerts show up here.</div>`;
+}
+function openNC() { $("#pNc").classList.add("on"); }
+function closeNC() {
+  const nc = $("#pNc"); if (!nc.classList.contains("on")) return;
+  nc.classList.remove("on"); S.notifs.forEach(n => n.un = false); setTimeout(renderNC, 300);
+}
+function busy(btn, on) { if (!btn) return; btn.classList.toggle("busy", on); btn.disabled = on; }
+function bumpScore(d) { S.score = Math.max(35, Math.min(98, S.score + d)); }
+
+/* ---------- actions */
+const ACT = {
+  qclean(btn) {
+    const tot = junkTotal();
+    if (!tot) { toast("Nothing to clean. Your PC is already tidy!", "tip"); fire("qclean"); return; }
+    busy(btn, true); btn.innerHTML = `${I("refresh")}Cleaning…`;
+    setTimeout(() => {
+      S.junk.forEach(j => j.s = 0); S.disk.used -= tot; bumpScore(12);
+      if (S.page === "overview") countTo($("#pJunkT"), tot, 0, fmt, 900);
+      setTimeout(() => { render(); toast(`Quick clean freed ${fmt(tot)}`); notify(`Quick clean freed ${fmt(tot)}`, "Emptied the Recycle Bin and removed junk files."); fire("qclean"); }, 950);
+    }, 900);
+  },
+  junkclean(btn) {
+    const sel = S.junk.filter(j => j.on && j.s > 0), tot = sel.reduce((a, j) => a + j.s, 0);
+    busy(btn, true);
+    setTimeout(() => { sel.forEach(j => j.s = 0); S.disk.used -= tot; bumpScore(junkTotal() ? 6 : 12); render(); toast(`Freed ${fmt(tot)}`); notify("Junk files cleaned", `Freed ${fmt(tot)}.`); }, 900);
+  },
+  scan(btn) {
+    busy(btn, true); const txt = $("#pScanTxt"); if (txt) txt.textContent = "Scanning your PC…";
+    let n = 0; const iv = setInterval(() => { n += 9000 + Math.random() * 9000; if (txt) txt.textContent = `Scanning… ${Math.round(n).toLocaleString()} files`; }, 120);
+    setTimeout(() => { clearInterval(iv); busy(btn, false); render(); toast("Scan finished"); fire("scan"); }, 1800);
+  },
+  selall(btn) {
+    const k = btn.dataset.k, sel = S.sel[k] ||= new Set(), rows = S.files[k];
+    if (sel.size === rows.length) sel.clear(); else rows.forEach(r => sel.add(r[0]));
+    render(k); fire("select");
+  },
+  recycle(btn) {
+    const k = btn.dataset.k, sel = S.sel[k]; if (!sel?.size) return;
+    const gone = S.files[k].filter(r => sel.has(r[0])), sz = gone.reduce((a, r) => a + r[3], 0);
+    $$(`.p-row[data-k="${k}"].sel`, page(k)).forEach((el, i) => setTimeout(() => el.classList.add("gone"), i * 45));
+    setTimeout(() => {
+      S.files[k] = S.files[k].filter(r => !sel.has(r[0])); sel.clear(); S.disk.used -= sz; bumpScore(Math.min(8, Math.round(sz / GB * 1.5) + 1));
+      render(k); toast(`Moved ${gone.length} file${gone.length > 1 ? "s" : ""} to the Recycle Bin`);
+      notify(`Moved ${gone.length} file${gone.length > 1 ? "s" : ""} to the Recycle Bin`, `${fmt(sz)}. You can still get them back from there.`); fire("recycle");
+    }, 380 + gone.length * 45);
+  },
+  uninstall(btn) { toast(`In the real app, this opens Windows' uninstaller for ${btn.dataset.n}.`, "tip"); },
+  upd(btn) { busy(btn, true); setTimeout(() => { busy(btn, false); toast("You're on the latest version."); }, 1100); },
+  bell() { const nc = $("#pNc"); if (nc.classList.contains("on")) closeNC(); else { openNC(); fire("bell"); } },
+  "nc-close"() { closeNC(); },
+  "nc-clear"() { S.notifs = []; renderNC(); },
+};
+
+/* ---------- live performance numbers */
+const H = S.hist;
+for (let i = 0; i < 40; i++) { H.cpu.push(18 + Math.random() * 12); H.mem.push(46 + Math.random() * 4); H.disk.push(Math.random() * 8); H.net.push(Math.random() * 30); }
+function tick(force) {
+  const p = S.procs;
+  p.forEach(x => { x.cpu = Math.max(0, Math.min(40, x.cpu + (Math.random() - .5) * (x.n === "Chrome" ? 6 : 2.4))); x.mem = Math.max(60 * MB, x.mem * (1 + (Math.random() - .5) * .03)); x.disk = Math.max(0, x.disk + (Math.random() - .55) * .6); });
+  const cpu = Math.min(99, 6 + p.reduce((a, x) => a + x.cpu, 0)), mem = 38 + p.reduce((a, x) => a + x.mem, 0) / (16 * GB) * 100;
+  const disk = p.reduce((a, x) => a + x.disk, 0) * 6, net = Math.max(0, H.net.at(-1) + (Math.random() - .5) * 20);
+  for (const [k, v] of [["cpu", cpu], ["mem", mem], ["disk", Math.min(100, disk)], ["net", Math.min(100, net)]]) { H[k].push(v); if (H[k].length > 40) H[k].shift(); }
+  if (S.page !== "performance" && !force) return;
+  const set = (k, big, small, max = 100) => {
+    const el = $("#pm-" + k); if (!el) return;
+    el.textContent = big; $("#pmd-" + k).textContent = small;
+    const pts = H[k].map((v, i) => `${(i / (H[k].length - 1) * 100).toFixed(1)},${(34 - Math.min(v, max) / max * 31).toFixed(1)}`);
+    $("#pl-" + k).setAttribute("d", "M" + pts.join(" L")); $("#pa-" + k).setAttribute("d", "M0,34 L" + pts.join(" L") + " L100,34 Z");
+  };
+  set("cpu", cpu.toFixed(0) + "%", "3.4 GHz · 8 cores"); set("mem", mem.toFixed(0) + "%", `${(mem / 100 * 16).toFixed(1)} GB of 16 GB`);
+  set("disk", (disk * .8).toFixed(1) + " MB/s", "Reading and writing"); set("net", (net * 14).toFixed(0) + " KB/s", "Wi-Fi");
+  const sorted = [...p].sort((a, b) => b[S.sort] - a[S.sort]), box = $("#pProcs");
+  if (box) box.innerHTML = sorted.map(x => `<div class="p-row"><div class="nm"><div class="p-av" style="background:hsl(${x.n.length * 37} 55% 50%);width:26px;height:26px;font-size:12px">${x.n[0]}</div><div><b>${x.n}</b></div></div><span class="r m hm">${x.k}</span>
+    <span class="r${S.sort === "cpu" ? " hot" : ""}">${x.cpu.toFixed(1)}%</span><span class="r${S.sort === "mem" ? " hot" : ""}">${fmt(x.mem)}</span><span class="r hm${S.sort === "disk" ? " hot" : ""}">${x.disk.toFixed(1)} MB/s</span></div>`).join("");
+}
+setInterval(() => { if (!document.hidden) tick(); }, 1000);
+
+/* ---------- events */
+lp.addEventListener("click", e => {
+  const t = e.target;
+  const ta = t.closest("[data-tour-act]"); if (ta) return tourAct(ta.dataset.tourAct);
+  const cap = t.closest("[data-cap]"); if (cap) return caption(cap.dataset.cap);
+  const g = t.closest("[data-go]"); if (g) return go(g.dataset.go);
+  const a = t.closest("[data-act]"); if (a) return ACT[a.dataset.act]?.(a, e);
+  const srt = t.closest("[data-sort]"); if (srt) { S.sort = srt.dataset.sort; $$("[data-sort]").forEach(b => b.classList.toggle("on", b === srt)); tick(true); return fire("sort:" + S.sort); }
+  const st = t.closest("[data-st]");
+  if (st) {
+    const s = S.startup[+st.dataset.st]; s.on = !s.on; bumpScore(s.on ? -3 : 3);
+    st.classList.toggle("on", s.on); st.closest(".p-row").classList.toggle("off", !s.on);
+    setTimeout(() => render("startup"), 260);
+    toast(s.on ? `${s.n} will start with Windows again` : `${s.n} won't start with Windows anymore`, s.on ? "tip" : "good");
+    if (!s.on) fire("startup-off");
+    return;
+  }
+  const th = t.closest("[data-theme-set]"); if (th) return setTheme(th.dataset.themeSet, e);
+  const ac = t.closest("[data-accent]"); if (ac) { lp.style.setProperty("--ac", ac.dataset.accent); render("settings"); return fire("accent"); }
+  const fl = t.closest("[data-flip]"); if (fl) return fl.classList.toggle("on");
+  const j = t.closest("[data-junk]"); if (j) { const x = S.junk[+j.dataset.junk]; if (x.s) { x.on = !x.on; render("junk"); } return; }
+  const row = t.closest(".p-row[data-f]");
+  if (row) {
+    const k = row.dataset.k, sel = S.sel[k] ||= new Set(), f = row.dataset.f;
+    sel.has(f) ? sel.delete(f) : sel.add(f);
+    row.classList.toggle("sel", sel.has(f));
+    const rows = S.files[k], sz = rows.filter(r => sel.has(r[0])).reduce((a, r) => a + r[3], 0), cnt = $("#pCnt-" + k);
+    cnt.innerHTML = sel.size ? `<b style="color:var(--tx)">${sel.size} selected</b> · ${fmt(sz)}` : `${rows.length} files · ${fmt(rows.reduce((a, r) => a + r[3], 0))}`;
+    cnt.classList.remove("bump"); void cnt.offsetWidth; cnt.classList.add("bump");
+    $(`[data-act="recycle"][data-k="${k}"]`).disabled = !sel.size;
+    $(`[data-act="selall"][data-k="${k}"]`).textContent = sel.size === rows.length ? "Clear selection" : "Select all";
+    fire("select");
+  }
+});
+// ripples and a soft glow that follows the mouse
+lp.addEventListener("pointerdown", e => {
+  const b = e.target.closest(".p-btn,.p-nav,.p-tile"); if (!b || b.disabled) return;
+  const r = b.getBoundingClientRect(), d = Math.max(r.width, r.height) * 2.2, sp = document.createElement("span");
+  sp.className = "p-rp"; sp.style.cssText = `width:${d}px;height:${d}px;left:${e.clientX - r.left - d / 2}px;top:${e.clientY - r.top - d / 2}px`;
+  b.append(sp); setTimeout(() => sp.remove(), 700);
+});
+let mv = null, mvRaf = 0;
+lp.addEventListener("pointermove", e => {
+  mv = e; if (mvRaf) return;
+  mvRaf = requestAnimationFrame(() => { mvRaf = 0; const c = mv.target.closest?.(".glow"); if (!c) return; const r = c.getBoundingClientRect(); c.style.setProperty("--mx", mv.clientX - r.left + "px"); c.style.setProperty("--my", mv.clientY - r.top + "px"); });
+}, {passive:true});
+
+function setTheme(th, e) {
+  if (lp.dataset.theme === th) return fire("theme");
+  const apply = () => { lp.dataset.theme = th; render("settings"); };
+  const root = document.documentElement;
+  if (!document.startViewTransition || matchMedia("(prefers-reduced-motion: reduce)").matches) { apply(); return fire("theme"); }
+  const x = e.clientX, y = e.clientY;
+  root.classList.add("vtc");
+  const vt = document.startViewTransition(apply);
+  vt.ready.then(() => { const r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)); root.animate({clipPath:[`circle(0px at ${x}px ${y}px)`, `circle(${r}px at ${x}px ${y}px)`]}, {duration:700, easing:"cubic-bezier(.22,1,.36,1)", pseudoElement:"::view-transition-new(root)"}); }).catch(() => {});
+  vt.finished.finally(() => { root.classList.remove("vtc"); fire("theme"); });
+}
+
+/* ---------- Windows caption buttons + taskbar */
+const stage = document.getElementById("stage"), tbApp = document.getElementById("tbApp"), hint = document.getElementById("closedHint");
+function caption(c) {
+  if (c === "min") { endTour(); lp.classList.add("min"); stage.classList.add("minned"); hint.innerHTML = "Minimized. Click <b>LaunchPC</b> on the taskbar to bring it back"; tbApp.classList.remove("on"); tbApp.classList.add("nudge"); }
+  if (c === "max") {
+    const m = stage.classList.toggle("max"); lp.classList.toggle("max", m);
+    $("#maxIc").innerHTML = m ? `<rect x=".5" y="2.5" width="7" height="7" rx="1"/><path d="M2.5 2.5V1.5a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1"/>` : `<rect x=".5" y=".5" width="9" height="9" rx="1.2"/>`;
+    setTimeout(place, 480);
+  }
+  if (c === "close") { endTour(); lp.classList.add("closed"); stage.classList.add("closed"); hint.innerHTML = "Click <b>LaunchPC</b> on the taskbar to open it again"; tbApp.classList.remove("on", "open"); tbApp.classList.add("nudge"); }
+}
+function restore() { lp.classList.remove("min", "closed"); stage.classList.remove("minned", "closed"); tbApp.className = "tbk app open on"; }
+tbApp.addEventListener("click", () => {
+  if (lp.classList.contains("closed") || lp.classList.contains("min")) return restore();
+  caption("min");
+});
+const clock = document.getElementById("tbClock");
+function setClock() { const d = new Date(); clock.innerHTML = `${d.toLocaleTimeString([], {hour:"numeric", minute:"2-digit"})}<br>${d.toLocaleDateString()}`; }
+setClock(); setInterval(setClock, 20000);
+
+/* ---------- guided tour */
+const STEPS = [
+  {el:'[data-tour="score"]', title:"Your PC's health score", text:"LaunchPC scans your PC and gives it a score out of 100. Everything you fix makes it go up."},
+  {el:'[data-tour="qclean"]', title:"Free up space in one click", text:"Click <b>Quick clean</b>. It empties the Recycle Bin and removes junk files that are safe to delete.", wait:"qclean", hint:"Click Quick clean"},
+  {el:"#pBell", title:"Notifications", text:"Everything LaunchPC does, plus alerts like a drive getting full, shows up here. Click the bell.", wait:"bell", hint:"Click the bell"},
+  {el:'.p-nav[data-go="startup"]', title:"Start Windows faster", text:"Apps that open when Windows starts slow your PC down. Open <b>Startup apps</b>.", wait:"go:startup", hint:"Open Startup apps"},
+  {el:'.p-row[data-app="Discord"] .p-tg', title:"Turn one off", text:"Click the switch to stop Discord from opening at startup. It stays installed, and Windows' own items are hidden so nothing breaks.", wait:"startup-off", hint:"Flip the switch"},
+  {el:'.p-nav[data-go="performance"]', title:"See what's using your PC", text:"Open <b>Performance</b> for live CPU, memory, disk and network readings.", wait:"go:performance", hint:"Open Performance"},
+  {el:'[data-sort="mem"]', title:"Just like Task Manager", text:"Click <b>Memory</b> to sort apps by how much they use.", wait:"sort:mem", hint:"Click Memory"},
+  {el:'.p-nav[data-go="largest"]', title:"Find your biggest files", text:"Open <b>Largest files</b>. Big files you forgot about are the quickest way to free space.", wait:"go:largest", hint:"Open Largest files"},
+  {el:'[data-tour="files-largest"]', title:"Pick and remove", text:"Tick one or two files, then click <b>Move to Recycle Bin</b>. You can always get them back.", wait:"recycle", hint:"Select, then remove", pin:true},
+  {el:'.p-nav[data-go="settings"]', title:"Make it yours", text:"Open <b>Settings</b> to change the look.", wait:"go:settings", hint:"Open Settings"},
+  {el:'[data-tour="theme"]', title:"Light or dark", text:"Switch between <b>Dark</b> and <b>Light</b> and watch the whole app change.", wait:"theme", hint:"Pick a theme"},
+  {el:null, title:"That's the tour!", text:"You just cleaned up a pretend PC in about a minute. LaunchPC does the same for your real one, for free.", final:true},
+];
+let T = null, placeIv = 0;
+const hole = $("#pHole"), tip = $("#pTip");
+function startTour() {
+  restore();
+  closeNC(); go("overview"); T = 0;
+  lp.classList.add("tour");
+  lp.scrollIntoView({behavior:"smooth", block:"center"});
+  showStep(); clearInterval(placeIv); placeIv = setInterval(place, 200);
+}
+function endTour() { T = null; lp.classList.remove("tour"); clearInterval(placeIv); }
+function tourAct(a) {
+  if (a === "next") return nextStep();
+  if (a === "end") return endTour();
+  if (a === "restart") return startTour();
+}
+function nextStep() { if (T === null) return; T++; if (T >= STEPS.length) return endTour(); showStep(); }
+function fire(ev) {
+  if (T === null || STEPS[T].wait !== ev) return;
+  const at = T;
+  setTimeout(() => { if (T === at) nextStep(); }, ev === "bell" ? 1300 : ev === "recycle" || ev === "qclean" ? 700 : 450);
+}
+function showStep() {
+  const s = STEPS[T], dl = document.querySelector("a.dl")?.href || "#download";
+  const dots = STEPS.map((_, i) => `<i class="${i === T ? "on" : i < T ? "done" : ""}"></i>`).join("");
+  tip.classList.toggle("done", !!s.final);
+  tip.innerHTML = `<div class="stp">${s.final ? "Done" : `Step ${T + 1} of ${STEPS.length - 1}`}<button data-tour-act="end" title="End tour">${I("x")}</button></div><h4>${s.title}</h4><p>${s.text}</p>
+    <div class="row">${s.final ? `<button class="p-btn" data-tour-act="restart">${I("refresh")}Again</button><span style="flex:1"></span><a class="p-btn pri dl" href="${dl}">${I("down")}Download LaunchPC</a>`
+      : s.wait ? `<span class="hint"><i></i>${s.hint}</span><span style="flex:1"></span><button class="skip" data-tour-act="next">Skip</button>` : `<span style="flex:1"></span><button class="p-btn pri" data-tour-act="next">Next</button>`}</div>${s.final ? "" : `<div class="dots" style="margin-top:12px">${dots}</div>`}`;
+  if (s.wait !== "bell") closeNC();
+  place();
+}
+function place() {
+  if (T === null) return;
+  const s = STEPS[T], body = $("#pBody"), box = body.getBoundingClientRect();
+  const el = s.el && $(s.el), vis = el && el.offsetParent !== null && el.getClientRects().length;
+  let h;
+  if (vis) {
+    const r = el.getBoundingClientRect(), pad = 5;
+    h = {x:r.left - box.left - pad, y:r.top - box.top - pad, w:r.width + pad * 2, h:r.height + pad * 2};
+    h.x = Math.max(2, h.x); h.y = Math.max(2, h.y); h.w = Math.min(h.w, box.width - h.x - 2); h.h = Math.min(h.h, box.height - h.y - 2);
+  } else h = {x:box.width / 2, y:box.height / 2, w:0, h:0};
+  Object.assign(hole.style, {left:h.x + "px", top:h.y + "px", width:h.w + "px", height:h.h + "px"});
+  hole.classList.toggle("pulse", !!(vis && s.wait));
+  const tw = tip.offsetWidth, th = tip.offsetHeight, gap = 14;
+  let x, y;
+  if (!vis) { x = (box.width - tw) / 2; y = (box.height - th) / 2; }
+  else if (s.pin && mobile()) { x = 10; y = box.height - th - 10; }
+  else if (h.y + h.h + gap + th < box.height - 6) { y = h.y + h.h + gap; x = h.x + h.w / 2 - tw / 2; }
+  else if (h.y - gap - th > 6) { y = h.y - gap - th; x = h.x + h.w / 2 - tw / 2; }
+  else if (h.x + h.w + gap + tw < box.width) { x = h.x + h.w + gap; y = h.y + h.h / 2 - th / 2; }
+  else { x = h.x - gap - tw; y = h.y + h.h / 2 - th / 2; }
+  x = Math.max(10, Math.min(x, box.width - tw - 10)); y = Math.max(10, Math.min(y, box.height - th - 10));
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+addEventListener("resize", place, {passive:true});
+document.getElementById("tourBtn").addEventListener("click", startTour);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && T !== null) endTour(); });
+
+/* ---------- start */
+render("overview"); renderNC();
+})();
+
+// ---------- language (English / Arabic)
+const isAr = () => document.documentElement.lang === "ar";
+let REL = null, RELS = null;
+function setLang(l, save) {
+  const ar = l === "ar", root = document.documentElement;
+  root.lang = ar ? "ar" : "en"; root.dir = ar ? "rtl" : "ltr";
+  document.querySelectorAll("[data-ar]").forEach(el => {
+    if (el.dataset.en === undefined) el.dataset.en = el.innerHTML;
+    el.innerHTML = ar ? el.dataset.ar : el.dataset.en;
+  });
+  const b = document.getElementById("langBtn");
+  b.textContent = ar ? "English" : "عربي"; b.lang = ar ? "en" : "ar";
+  b.title = ar ? "Switch to English" : "التبديل إلى العربية";
+  document.title = ar ? "LaunchPC – نظّف جهازك وسرّعه من مكان واحد" : "LaunchPC – Clean up and speed up your Windows PC";
+  renderMeta(); renderReleases();
+  if (save) try { localStorage.setItem("lpc_lang", l); } catch (e) {}
+}
+// ---------- animated language switch
+let switching = false;
+// Switching language: the text fades away for a moment (the backgrounds stay), the page changes
+// direction while nothing can be seen moving, then the new text sweeps in across the screen,
+// right to left into Arabic and left to right into English.
+const SWEEP = 900, OUT = 130;
+const outInv = x => 1 - Math.cbrt(1 - Math.min(1, Math.max(0, x)));               // inverse of ease-out-cubic
+function textTargets() {
+  return [...document.querySelectorAll(".nav > *, .hero .chip, .hero h1, .hero .lead, .hero .ctas, .hero .meta, .tryrow, .sh, .grid > *, .steps > *, .trust > *, .rel, .rmore, .faq > *, .fb, .final, footer .wrap > *")]
+    .filter(el => { const r = el.getBoundingClientRect(); return r.width && r.bottom > -40 && r.top < innerHeight + 40; });
+}
+function switchLang(l) {
+  const toAr = l === "ar", btn = document.getElementById("langBtn");
+  if (switching) return;
+  btn.classList.remove("flip"); void btn.offsetWidth; btn.classList.add("flip");
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return setLang(l, true);
+  switching = true;
+  const vw = innerWidth, x0 = toAr ? vw + 10 : -10, x1 = toAr ? -60 : vw + 60;
+  // 1. fade the current text out
+  const old = textTargets();
+  const outs = old.map(el => el.animate([{opacity:1, transform:"none"}, {opacity:0, transform:"translate3d(0,-6px,0)"}], {duration:OUT, easing:"ease-in", fill:"forwards"}));
+  // 2. an invisible sweep (same timing as before) decides when each piece of new text appears
+  const t0 = performance.now();
+  setTimeout(() => { switching = false; }, SWEEP);
+  Promise.all(outs.map(a => a.finished.catch(() => {}))).then(() => {
+    // 3. nothing is visible now, so change the language and direction
+    setLang(l, true);
+    const now = performance.now() - t0, fresh = textTargets();
+    old.forEach((el, i) => { if (!fresh.includes(el)) outs[i].cancel(); });
+    // 4. each piece of text appears when the sweep reaches it
+    fresh.forEach(el => {
+      const r = el.getBoundingClientRect();
+      const edge = toAr ? r.right - r.width * .15 : r.left + r.width * .15;      // the side the sweep meets first
+      const arrive = outInv((edge - x0) / (x1 - x0)) * SWEEP;
+      const delay = Math.max(0, arrive - now);
+      const inA = el.animate([{opacity:0, transform:"translate3d(0,12px,0)"}, {opacity:1, transform:"none"}], {duration:520, delay, easing:"cubic-bezier(.22,1,.36,1)", fill:"both"});
+      const i = old.indexOf(el);
+      inA.finished.then(() => { if (i >= 0) outs[i].cancel(); inA.cancel(); }, () => {});
+    });
+  });
+}
+document.getElementById("langBtn").addEventListener("click", () => switchLang(isAr() ? "en" : "ar"));
+
+// ---------- version line + "What's new" (always from GitHub)
+function renderMeta() {
+  const v = REL ? REL.v : "0.1.1", mb = REL ? REL.mb : "12.9";
+  document.getElementById("meta").textContent = isAr() ? `الإصدار ${v} التجريبي · ${mb} ميجابايت · بدون حساب` : `Version ${v} Beta · ${mb} MB · No account needed`;
+}
+const escH = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;"})[c]);
+function renderReleases() {
+  const box = document.getElementById("relList");
+  box.querySelectorAll(".tag").forEach(t => t.textContent = isAr() ? "الأحدث" : "Latest");
+  if (!RELS) {
+    box.querySelectorAll("time").forEach(t => t.textContent = new Date(t.getAttribute("datetime") + "T12:00").toLocaleDateString(isAr() ? "ar" : "en", {day:"numeric", month:"long", year:"numeric"}));
+    box.querySelectorAll(".ritem").forEach(a => a.dir = "ltr");
+    return;
+  }
+  box.innerHTML = RELS.slice(0, 4).map((r, i) => {
+    const lines = (r.body || "").split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+    const items = lines.filter(l => /^[-*] /.test(l)).map(l => l.slice(2));
+    const intro = lines.find(l => !/^[-*#] /.test(l) && !/^#/.test(l));
+    const name = r.tag_name.replace(/^v/, "").replace(/-beta$/i, " Beta");
+    const date = new Date(r.published_at).toLocaleDateString(isAr() ? "ar" : "en", {day:"numeric", month:"long", year:"numeric"});
+    return `<article class="ritem${i === 0 ? " latest" : ""}"><div class="rhead"><b dir="ltr">${escH(name)}</b>${i === 0 ? `<span class="tag">${isAr() ? "الأحدث" : "Latest"}</span>` : ""}<time datetime="${r.published_at}">${date}</time></div>
+      <div dir="ltr" style="text-align:left">${intro ? `<p>${escH(intro)}</p>` : ""}${items.length ? `<ul>${items.map(t => `<li>${escH(t)}</li>`).join("")}</ul>` : ""}</div></article>`;
+  }).join("");
+}
+fetch("https://api.github.com/repos/khaledahmed212/LaunchPC/releases?per_page=10").then(r => r.json()).then(list => {
+  const rels = (list || []).filter(r => !r.draft && r.assets && r.assets.some(a => /\.exe$/i.test(a.name)));
+  if (!rels.length) return;
+  const a = rels[0].assets.find(a => /\.exe$/i.test(a.name));
+  document.querySelectorAll("a.dl").forEach(el => el.href = a.browser_download_url);
+  REL = {v:rels[0].tag_name.replace(/^v/, "").replace(/-beta$/i, ""), mb:(a.size / 1048576).toFixed(1)};
+  RELS = rels;
+  renderMeta(); renderReleases();
+}).catch(() => {});
+
+// ---------- after clicking Download: help with the Windows warning
+const dlm = document.getElementById("dlm"), ss = document.getElementById("ss"), cur = document.getElementById("ssCur");
+const onWindows = /Windows/i.test(navigator.userAgent) && !/Windows Phone/i.test(navigator.userAgent);
+let ssTimer = 0, lastFocus = null;
+function ssStep(n) {
+  ss.dataset.step = n;
+  document.querySelectorAll(".dlm-steps li").forEach(li => li.classList.toggle("on", li.dataset.s == n));
+  const t = document.getElementById(n == 1 ? "ssMore" : "ssRun");
+  requestAnimationFrame(() => {
+    cur.style.left = (t.offsetLeft + t.offsetWidth * .6) + "px"; cur.style.top = (t.offsetTop + t.offsetHeight * .55) + "px";
+    setTimeout(() => { cur.classList.remove("tap"); void cur.offsetWidth; cur.classList.add("tap"); }, 850);
+  });
+}
+function openDlm() {
+  lastFocus = document.activeElement;
+  document.getElementById("dlmWin").hidden = !onWindows; document.getElementById("dlmOther").hidden = onWindows;
+  dlm.hidden = false; requestAnimationFrame(() => dlm.classList.add("on"));
+  document.body.style.overflow = "hidden";
+  dlm.querySelector(".dlm-x").focus({preventScroll:true});
+  if (onWindows) { cur.style.left = "70%"; cur.style.top = "85%"; setTimeout(() => ssStep(1), 300); clearInterval(ssTimer); ssTimer = setInterval(() => ssStep(ss.dataset.step == 1 ? 2 : 1), 3200); }
+}
+function closeDlm() {
+  if (dlm.hidden) return;
+  dlm.classList.remove("on"); clearInterval(ssTimer); document.body.style.overflow = "";
+  setTimeout(() => { dlm.hidden = true; }, 300);
+  lastFocus?.focus?.({preventScroll:true});
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest("a.dl");
+  if (a && !a.classList.contains("again")) {
+    if (!onWindows) e.preventDefault();
+    setTimeout(openDlm, onWindows ? 450 : 0);
+  }
+});
+dlm.addEventListener("click", e => {
+  if (e.target === dlm || e.target.closest("[data-dlm-close]")) return closeDlm();
+  const li = e.target.closest(".dlm-steps li"); if (li) { clearInterval(ssTimer); ssStep(li.dataset.s); }
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeDlm(); });
+document.getElementById("dlmShare").addEventListener("click", async e => {
+  const url = "https://launchpc.github.io/", btn = e.currentTarget;
+  try {
+    if (navigator.share) await navigator.share({title:"LaunchPC", text:isAr() ? "افتح هذا على جهاز الكمبيوتر لتحميل LaunchPC" : "Open this on your PC to download LaunchPC", url});
+    else { await navigator.clipboard.writeText(url); btn.textContent = isAr() ? "تم نسخ الرابط" : "Link copied"; }
+  } catch (err) {}
+});
+
+// ---------- warm up: load the other language's letters in the background so the first switch is instant
+function warmUp() {
+  const outer = document.createElement("div"), box = document.createElement("div");
+  outer.setAttribute("aria-hidden", "true");
+  outer.style.cssText = "position:fixed;top:0;left:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;contain:strict";
+  box.style.cssText = "width:900px";
+  outer.append(box);
+  box.lang = "ar"; box.dir = "rtl";
+  box.style.fontFamily = '"Segoe UI","Noto Kufi Arabic","Noto Sans Arabic",Tahoma,system-ui,sans-serif';
+  box.innerHTML = [...document.querySelectorAll("[data-ar]")].map(el => `<p>${el.dataset.ar}</p>`).join("") + `<p style="font-weight:700;font-size:40px">${document.querySelector("h1").dataset.ar}</p>`;
+  document.body.append(outer);
+  box.offsetHeight;
+  setTimeout(() => outer.remove(), 4000);
+}
+(window.requestIdleCallback || (f => setTimeout(f, 300)))(warmUp);
+
+// ---------- start in the visitor's language
+let startLang = null;
+try { startLang = localStorage.getItem("lpc_lang"); } catch (e) {}
+setLang(startLang || ((navigator.language || "").toLowerCase().startsWith("ar") ? "ar" : "en"), false);
+</script>
+</body>
+</html>
