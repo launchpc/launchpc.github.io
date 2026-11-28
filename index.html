@@ -466,6 +466,11 @@ html.vtc::view-transition-new(root){z-index:2}
 }
 @media(prefers-reduced-motion:reduce){.lp *{animation:none!important}}
 section{padding:90px 0}
+.vid{display:grid;grid-template-columns:1fr auto;align-items:center;gap:56px;max-width:900px;margin:0 auto}
+.vid .sh{text-align:start;margin:0}
+.vid-ph{position:relative;width:300px;aspect-ratio:9/16;border-radius:32px;padding:8px;background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--border);box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.03) inset,0 0 90px color-mix(in srgb,var(--accent) 22%,transparent)}
+.vid-ph video{display:block;width:100%;height:100%;object-fit:cover;border-radius:25px;background:#070c1c}
+@media(max-width:760px){.vid{grid-template-columns:1fr;gap:30px;justify-items:center}.vid .sh{text-align:center}.vid-ph{width:min(280px,78vw)}}
 .sh{text-align:center;max-width:640px;margin:0 auto 46px}
 .sh h2{font-size:clamp(30px,4vw,44px)}
 .sh p{color:var(--muted);font-size:17px;margin:12px 0 0}
@@ -638,6 +643,11 @@ footer a:hover{color:var(--text)}
     <div class="step reveal"><div class="n">3</div><h3 data-ar="أصلح ما يهم">Fix what matters</h3><p data-ar="اتبع التوصيات ووفّر المساحة ببضع نقرات.">Follow the recommendations and free up space in a few clicks.</p></div>
   </div>
 </div></section>
+
+<section id="video" style="padding-top:20px"><div class="wrap"><div class="vid">
+  <div class="sh reveal"><span class="eyebrow" data-ar="شاهد">Watch</span><h2 data-ar="شاهده في 30 ثانية">See it in 30 seconds</h2><p data-ar="نظرة سريعة على ما يفعله LaunchPC لجهازك: تقييم صحة الجهاز، والتنظيف السريع، والملفات الضخمة، وبرامج بدء التشغيل.">A quick look at what LaunchPC does for your PC: health score, quick clean, big files and startup apps.</p></div>
+  <div class="vid-ph reveal"><video src="launchpc-video.mp4" poster="video-poster.jpg" controls playsinline preload="metadata" aria-label="LaunchPC explainer video"></video></div>
+</div></div></section>
 
 <section style="padding-top:0"><div class="wrap"><div class="trust reveal">
   <div><h3><svg class="i"><use href="#check"/></svg><span data-ar="آمن من الأساس">Safe by design</span></h3><p data-ar="الملفات التي تحذفها تذهب إلى سلة المحذوفات أولًا، فيمكنك استرجاعها دائمًا.">Files you remove go to the Recycle Bin first, so you can always get them back.</p></div>
